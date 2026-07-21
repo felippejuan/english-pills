@@ -1,0 +1,36 @@
+import json
+import os
+
+days = [
+    {
+        "day": 1,
+        "topic": "Running an Effective Daily Stand-Up",
+        "curiosity_title": "Keeping It Brief",
+        "curiosity_text": "Daily stand-up meetings are meant to be quick check-ins, usually lasting no more than 15 minutes. The goal is to align the team, flag any roadblocks, and move on. However, people often get bogged down in technical details or side discussions. A great way to handle this is to gently interrupt and suggest taking the conversation offline. For example, you can say 'Let's take this offline so we don't hold everyone up.' This keeps the meeting on track while ensuring the issue still gets addressed later.\n\nAnother key aspect is setting a clear agenda. Everyone should answer three simple questions: What did you do yesterday? What are you doing today? Are there any blockers? If someone starts rambling, the Scrum Master or team lead should step in to steer the focus back to the core updates.",
+        "grammar_tip": "Phrasal Verb: 'Bog down' means to be prevented from making progress, usually because of too much detail or complexity.",
+        "youtube_video": "https://www.youtube.com/watch?v=0hOvtA5q5YQ",
+        "youtube_thumbnail": "https://img.youtube.com/vi/0hOvtA5q5YQ/maxresdefault.jpg",
+        "youtube_title": "▶️ How to run a Daily Scrum"
+    },
+    {
+        "day": 2,
+        "topic": "Giving Constructive Feedback",
+        "curiosity_title": "The Art of Feedback",
+        "curiosity_text": "Giving feedback to a colleague can be challenging, especially if you need to point out a mistake. A highly effective strategy is the 'Situation-Behavior-Impact' framework. Instead of saying 'Your presentation was confusing', you focus on the facts: 'During yesterday's meeting (Situation), you skipped the financial slides (Behavior), which left the clients confused about the budget (Impact).'\n\nThis approach removes personal emotion from the critique and makes the feedback purely objective. It allows the recipient to understand exactly what went wrong without feeling personally attacked. Following up with a constructive suggestion, like 'Perhaps next time we can do a dry run beforehand', helps build a supportive environment.",
+        "grammar_tip": "Collocation: 'Point out' means to direct attention toward something, often a fact, mistake, or detail.",
+        "youtube_video": "https://www.youtube.com/watch?v=wtl5UhiZAAM",
+        "youtube_thumbnail": "https://img.youtube.com/vi/wtl5UhiZAAM/hqdefault.jpg",
+        "youtube_title": "▶️ How to Give Feedback"
+    }
+]
+
+# Expand to 15 days
+for i in range(3, 16):
+    day_copy = days[(i-1) % 2].copy()
+    day_copy["day"] = i
+    days.append(day_copy)
+
+with open('C:\\\\Users\\\\felip\\\\.gemini\\\\antigravity\\\\scratch\\\\english-pills\\\\docs\\\\database.json', 'w', encoding='utf-8') as f:
+    json.dump(days, f, indent=4, ensure_ascii=False)
+    
+print("Database V5 (Everyday English) generated successfully.")

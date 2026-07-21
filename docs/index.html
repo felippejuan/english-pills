@@ -33,6 +33,7 @@
         .container {
             width: 100%; max-width: 680px;
             padding: 50px 20px;
+            position: relative;
         }
 
         header { text-align: center; margin-bottom: 50px; }
@@ -55,10 +56,46 @@
         .btn-icon { background: #f5f5f7; border: none; padding: 10px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; cursor: pointer; color: var(--text-color); display: flex; align-items: center; gap: 6px; transition: background 0.2s; }
         .btn-icon:hover { background: #e5e5ea; }
 
-        #text-content { font-size: 18px; line-height: 1.7; color: #333; }
-        .clickable-word { cursor: pointer; transition: all 0.2s; border-bottom: 1px dashed transparent; }
-        .clickable-word:hover { background: #f0f0f0; border-bottom: 1px dashed #999; }
-        .clickable-word.selected { background: #e8f0fe; color: #1a73e8; font-weight: 600; border-radius: 4px; padding: 0 2px; border-bottom: none; }
+        /* Text area for natural selection */
+        #text-content { 
+            font-size: 18px; 
+            line-height: 1.8; 
+            color: #333; 
+            user-select: text; 
+            -webkit-user-select: text;
+        }
+        ::selection { background: #e8f0fe; color: #1a73e8; }
+        
+        /* Floating selection button */
+        #floating-btn {
+            position: absolute;
+            display: none;
+            background: #1d1d1f;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 100;
+            transform: translate(-50%, -120%);
+        }
+        #floating-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 6px 6px 0;
+            border-style: solid;
+            border-color: #1d1d1f transparent transparent transparent;
+        }
+
+        .selected-list { margin-top: 25px; display: flex; flex-wrap: wrap; gap: 10px; }
+        .chip { background: #e8f0fe; color: #1a73e8; padding: 6px 12px; border-radius: 16px; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+        .chip button { background: none; border: none; color: #1a73e8; font-weight: bold; cursor: pointer; padding: 0; }
 
         .btn {
             background: var(--accent); color: white; border: none;
@@ -138,9 +175,13 @@
             <h2 style="margin:0;">Reading & Calibration</h2>
             <button class="btn-icon" id="read-aloud-btn">🔊 Listen (UK)</button>
         </div>
-        <p style="color: var(--secondary-text); margin-bottom: 25px;">Click any word you'd like to learn or review.</p>
+        <p style="color: var(--secondary-text); margin-bottom: 25px;">Highlight any word or expression you'd like to learn.</p>
         
+        <!-- Raw text, natural selection -->
         <div id="text-content"></div>
+        <button id="floating-btn">💡 Learn Expression</button>
+        
+        <div class="selected-list" id="selected-list"></div>
         
         <div id="word-tooltip">
             <div id="tt-loader" class="loader" style="display: block; margin: 20px auto;"></div>
@@ -183,7 +224,7 @@
     <div class="card hidden" id="done-card" style="text-align: center; padding: 60px 30px;">
         <h2 style="font-size: 48px; margin: 0 0 15px 0;">🎉</h2>
         <h2>Workout Complete!</h2>
-        <p style="color: var(--secondary-text); font-size: 16px; line-height: 1.6;">Your progress is safely stored in the cloud. The Pimsleur algorithm will intelligently schedule these words for review in 1, 7, 14, and 30 days.</p>
+        <p style="color: var(--secondary-text); font-size: 16px; line-height: 1.6;">Your progress is safely stored in the cloud. The Pimsleur algorithm will intelligently schedule these expressions for review in 1, 7, 14, and 30 days.</p>
     </div>
 </div>
 
@@ -203,6 +244,7 @@
     let expectedWord = "";
     let expectedSentence = "";
     let spokenCorrectly = false;
+    let tempSelection = "";
     
     // UI Elements
     const mainLoader = document.getElementById('main-loader');
@@ -210,6 +252,8 @@
     const textContent = document.getElementById('text-content');
     const startBtn = document.getElementById('start-exercises-btn');
     const readBtn = document.getElementById('read-aloud-btn');
+    const floatingBtn = document.getElementById('floating-btn');
+    const selectedList = document.getElementById('selected-list');
     
     const tooltip = document.getElementById('word-tooltip');
     const ttLoader = document.getElementById('tt-loader');
@@ -244,39 +288,12 @@
             
             if (todayData) {
                 fullTextToRead = todayData.curiosity_text;
+                // Render raw text with <br> for newlines. No span wrapping.
+                textContent.innerHTML = fullTextToRead.replace(/\\n/g, '<br>');
                 
-                // Robust word parsing: split by non-letters, keep them in array to reconstruct exact text
-                const tokens = fullTextToRead.split(/([a-zA-Z]+)/);
-                textContent.innerHTML = tokens.map(t => {
-                    if (/^[a-zA-Z]+$/.test(t)) return `<span class="clickable-word">${t}</span>`;
-                    // Convert newlines to HTML breaks
-                    return t.replace(/\\n/g, '<br>');
-                }).join('');
-                
-                document.querySelectorAll('.clickable-word').forEach(el => {
-                    el.addEventListener('click', async (e) => {
-                        const word = e.target.innerText.toLowerCase();
-                        const isSelecting = !e.target.classList.contains('selected');
-                        e.target.classList.toggle('selected');
-                        
-                        if (isSelecting) {
-                            selectedWords.add(word);
-                            showTooltip(word);
-                        } else {
-                            selectedWords.delete(word);
-                            tooltip.style.display = 'none';
-                        }
-                    });
-                });
-                
-                // Select due words automatically
+                // Load due words from Schedule
                 const dueWords = getDueWords();
-                dueWords.forEach(w => {
-                    selectedWords.add(w);
-                    document.querySelectorAll('.clickable-word').forEach(el => {
-                        if (el.innerText.toLowerCase() === w) el.classList.add('selected');
-                    });
-                });
+                dueWords.forEach(w => addChip(w));
                 
                 mainLoader.style.display = 'none';
                 calibCard.classList.remove('hidden');
@@ -285,6 +302,55 @@
             console.error(e);
             alert("Error loading content.");
         }
+    }
+
+    // Highlighting Logic
+    document.addEventListener('selectionchange', () => {
+        const selection = window.getSelection();
+        const text = selection.toString().trim();
+        
+        if (text.length > 0 && text.length < 50 && selection.anchorNode && textContent.contains(selection.anchorNode)) {
+            const range = selection.getRangeAt(0);
+            const rect = range.getBoundingClientRect();
+            
+            floatingBtn.style.display = 'block';
+            floatingBtn.style.left = `${rect.left + rect.width / 2 + window.scrollX}px`;
+            floatingBtn.style.top = `${rect.top + window.scrollY - 10}px`;
+            tempSelection = text;
+        } else {
+            // Delay hiding slightly to allow clicking the button
+            setTimeout(() => {
+                if(window.getSelection().toString().trim() === "") {
+                    floatingBtn.style.display = 'none';
+                }
+            }, 100);
+        }
+    });
+
+    floatingBtn.addEventListener('click', () => {
+        if (tempSelection) {
+            const exp = tempSelection.toLowerCase();
+            addChip(exp);
+            showTooltip(exp);
+            floatingBtn.style.display = 'none';
+            window.getSelection().removeAllRanges();
+        }
+    });
+
+    function addChip(word) {
+        if(selectedWords.has(word)) return;
+        selectedWords.add(word);
+        
+        const chip = document.createElement('div');
+        chip.className = 'chip';
+        chip.innerHTML = `${word} <button onclick="removeChip('${word}', this)">✕</button>`;
+        selectedList.appendChild(chip);
+    }
+    
+    window.removeChip = function(word, btn) {
+        selectedWords.delete(word);
+        btn.parentElement.remove();
+        tooltip.style.display = 'none';
     }
 
     // TTS
@@ -300,6 +366,7 @@
         }
     });
 
+    // Tooltip API with strict JSON enforcement
     async function showTooltip(word) {
         tooltip.style.display = 'block';
         ttContent.classList.add('hidden');
@@ -310,11 +377,12 @@
             return;
         }
 
-        const prompt = `Provide educational details for the English word "${word}". 
-        Return ONLY a JSON object with this exact structure:
+        const prompt = `Provide educational details for the English expression "${word}". 
+        Return ONLY a raw JSON object. Do not wrap in markdown tags like \`\`\`json.
+        Exact JSON structure required:
         {
           "word": "${word}",
-          "phonetic_br": "brasilizada phonetic spelling (e.g. chou queisin for showcasing, fá-dã for father)",
+          "phonetic_br": "brasilizada phonetic spelling (e.g. téiki i-ró-fi for take it off)",
           "definition": "brief definition in English",
           "examples": ["easy example", "medium example", "hard example"]
         }`;
@@ -323,17 +391,22 @@
             const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ contents: [{parts:[{text: prompt}]}] })
+                body: JSON.stringify({ 
+                    contents: [{parts:[{text: prompt}]}]
+                })
             });
             const data = await res.json();
             let jsonText = data.candidates[0].content.parts[0].text;
-            const match = jsonText.match(/\\{.*\\}/s);
-            const resObj = JSON.parse(match ? match[0] : jsonText);
+            
+            // Safe parsing
+            jsonText = jsonText.replace(/```json/g, '').replace(/```/g, '').trim();
+            const resObj = JSON.parse(jsonText);
             
             tooltipCache[word] = resObj;
             renderTooltip(resObj);
         } catch(e) {
             console.error(e);
+            alert("Failed to load details. Gemini API might be busy.");
             tooltip.style.display = 'none';
         }
     }
@@ -378,7 +451,7 @@
 
     startBtn.addEventListener('click', async () => {
         if (selectedWords.size === 0) {
-            alert("Select at least one word to start training.");
+            alert("Highlight at least one expression to start training.");
             return;
         }
         
@@ -387,21 +460,17 @@
         
         await updateCloudState();
         await generateExercises();
-        
-        calibCard.classList.add('hidden');
-        exCard.classList.remove('hidden');
-        showExercise();
     });
 
     async function generateExercises() {
         const wordsList = Array.from(selectedWords);
-        const prompt = `Generate English exercises for these words: ${wordsList.join(', ')}.
-        Return ONLY a JSON array of objects.
+        const prompt = `Generate English exercises for these expressions: ${wordsList.join(', ')}.
+        Return ONLY a raw JSON array. Do not wrap in markdown tags like \`\`\`json. Do not explain.
         Structure per object:
         {
-          "word": "target word",
+          "word": "target expression",
           "difficulty": "randomly pick easy, medium, or hard",
-          "sentence": "a natural sentence using the word"
+          "sentence": "a natural sentence using the expression exactly as written"
         }`;
 
         try {
@@ -411,16 +480,30 @@
                 body: JSON.stringify({ contents: [{parts:[{text: prompt}]}] })
             });
             const data = await res.json();
+            
+            if(!data.candidates || !data.candidates[0]) {
+                 throw new Error("Invalid API response format");
+            }
+            
             let jsonText = data.candidates[0].content.parts[0].text;
-            const match = jsonText.match(/\\[.*\\]/s);
-            currentExercises = JSON.parse(match ? match[0] : jsonText);
+            
+            // Clean markdown blocks if Gemini ignored the instruction
+            jsonText = jsonText.replace(/```json/g, '').replace(/```/g, '').trim();
+            
+            currentExercises = JSON.parse(jsonText);
+            
+            calibCard.classList.add('hidden');
+            exCard.classList.remove('hidden');
+            showExercise();
+            
         } catch(e) {
-            console.error(e);
-            alert("Error generating exercises. Please refresh.");
+            console.error("Exercise generation failed: ", e);
+            alert("Error generating exercises. Gemini returned invalid data. Please refresh and try again.");
+            startBtn.innerHTML = 'Generate AI Exercises';
+            startBtn.disabled = false;
         }
     }
 
-    // Shuffle array utility for Hard mode
     function shuffle(array) {
         let currentIndex = array.length, randomIndex;
         while (currentIndex != 0) {
@@ -451,22 +534,28 @@
         scrambleBox.classList.add('hidden');
         sentenceEl.classList.remove('hidden');
         
+        // Escape regex special chars in the target word
+        const safeRegex = expectedWord.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');
+        const wordRegex = new RegExp(`\\\\b${safeRegex}\\\\b`, 'ig');
+        
         if (ex.difficulty === 'easy') {
             diffBadge.className = "difficulty-badge diff-easy"; diffBadge.innerText = "EASY";
             instructionEl.innerText = "Fill in the blank (First letter given).";
-            let hint = expectedWord[0] + "_".repeat(expectedWord.length - 1);
-            sentenceEl.innerHTML = ex.sentence.replace(new RegExp(`\\b${ex.word}\\b`, 'ig'), `<strong>${hint}</strong>`);
-            inputEl.placeholder = "Type the missing word...";
+            
+            let hintParts = expectedWord.split(' ').map(w => w[0] + "_".repeat(w.length - 1));
+            let hint = hintParts.join(' ');
+            
+            sentenceEl.innerHTML = ex.sentence.replace(wordRegex, `<strong>${hint}</strong>`);
+            inputEl.placeholder = "Type the missing expression...";
         } else if (ex.difficulty === 'medium') {
             diffBadge.className = "difficulty-badge diff-medium"; diffBadge.innerText = "MEDIUM";
             instructionEl.innerText = "Fill in the blank.";
-            sentenceEl.innerHTML = ex.sentence.replace(new RegExp(`\\b${ex.word}\\b`, 'ig'), `<strong>_____</strong>`);
-            inputEl.placeholder = "Type the missing word...";
+            sentenceEl.innerHTML = ex.sentence.replace(wordRegex, `<strong>_____</strong>`);
+            inputEl.placeholder = "Type the missing expression...";
         } else {
             diffBadge.className = "difficulty-badge diff-hard"; diffBadge.innerText = "HARD";
             instructionEl.innerText = "Unscramble the words and type the full sentence below.";
             
-            // Generate jumbled words
             let words = ex.sentence.replace(/[.,!?]/g, '').split(' ');
             let jumbled = shuffle([...words]).join(' / ');
             
@@ -477,7 +566,6 @@
         }
     }
 
-    // Speech Recognition
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     let recognition = null;
     
@@ -498,7 +586,6 @@
             
             let passed = false;
             if (ex.difficulty === 'hard') {
-                // Must speak roughly the full sentence
                 if (transcript.includes(expectedWord) && transcript.length > expectedWord.length) passed = true;
             } else {
                 if (transcript.includes(expectedWord)) passed = true;
@@ -551,7 +638,6 @@
         
         let isCorrect = false;
         if (ex.difficulty === 'hard') {
-            // Check if they typed the full sentence correctly (ignoring punctuation)
             const cleanExpected = expectedSentence.toLowerCase().replace(/[.,!?]/g, '');
             const cleanVal = val.replace(/[.,!?]/g, '');
             isCorrect = (cleanVal === cleanExpected);
@@ -570,7 +656,7 @@
             if (ex.difficulty === 'hard') {
                 feedbackEl.innerHTML = `Wrong. Correct sentence:<br><em>${expectedSentence}</em>`;
             } else {
-                feedbackEl.innerText = `Wrong. The correct word is: ${expectedWord}`;
+                feedbackEl.innerText = `Wrong. The correct expression is: ${expectedWord}`;
             }
             feedbackEl.className = "feedback wrong";
         }
