@@ -1,0 +1,36 @@
+import json
+import os
+import re
+
+days = [
+    {
+        "day": 1,
+        "topic": "The 2008 Financial Crash & Corporate Greed",
+        "curiosity_title": "The Fall of Lehman Brothers",
+        "curiosity_text": "In 2008, the global economy faced its worst crisis since the Great Depression, triggered largely by the collapse of the US housing market. At the epicentre of this turmoil was Lehman Brothers, a 158-year-old investment bank. The firm had heavily invested in subprime mortgages—loans given to borrowers with poor credit histories. When the housing bubble burst and property values plummeted, these mortgages became virtually worthless overnight.\n\nThe bankruptcy of Lehman Brothers in September 2008 sent shockwaves throughout the global financial system. It showcased how deeply interconnected the world's major banks had become. Stock markets crashed, credit froze, and governments worldwide had to step in with massive bailout packages to prevent a complete economic meltdown. It remains a stark reminder of the dangers of unchecked corporate risk-taking.",
+        "grammar_tip": "When discussing past events that had a direct consequence on another past event, use the Past Perfect (had + past participle). Example: 'The bank collapsed because they had invested in risky mortgages.'",
+        "youtube_video": "https://www.youtube.com/watch?v=Q-zp5Mb7AL0",
+        "youtube_thumbnail": "https://img.youtube.com/vi/Q-zp5Mb7AL0/hqdefault.jpg"
+    },
+    {
+        "day": 2,
+        "topic": "Tech Monopolies & Phrasal Verbs",
+        "curiosity_title": "Microsoft's Antitrust Battle",
+        "curiosity_text": "During the late 1990s, Microsoft dominated the personal computer market with its Windows operating system. However, the company faced a massive antitrust lawsuit from the US government, which accused Microsoft of maintaining an illegal monopoly. The core issue was that Microsoft bundled its Internet Explorer web browser with Windows, making it exceptionally difficult for competing browsers, like Netscape Navigator, to survive in the market.\n\nAfter years of fierce legal battles, the court initially ordered that Microsoft be broken up into two separate entities. Although this severe penalty was later overturned on appeal, the lawsuit fundamentally changed the tech industry. It forced Microsoft to open up its software architecture and paved the way for future innovators, ultimately shaping the competitive digital landscape we navigate today.",
+        "grammar_tip": "Phrasal Verb: 'Break up' means to divide into smaller parts. In a business context, it refers to splitting a large corporation into multiple independent companies.",
+        "youtube_video": "https://www.youtube.com/watch?v=5aJbbzR2e5g",
+        "youtube_thumbnail": "https://img.youtube.com/vi/5aJbbzR2e5g/hqdefault.jpg"
+    }
+]
+
+# Expand to 15 days
+for i in range(3, 16):
+    day_copy = days[(i-1) % 2].copy()
+    day_copy["day"] = i
+    days.append(day_copy)
+
+# Ensure no \n\n bugs by doing a clean dump
+with open('C:\\\\Users\\\\felip\\\\.gemini\\\\antigravity\\\\scratch\\\\english-pills\\\\docs\\\\database.json', 'w', encoding='utf-8') as f:
+    json.dump(days, f, indent=4, ensure_ascii=False)
+    
+print("Database V4 generated successfully.")

@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Pills - Smart Tutor</title>
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Fluency Coach</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #fbfbfd;
+            --bg-color: #f5f5f7;
             --text-color: #1d1d1f;
             --secondary-text: #86868b;
             --accent: #0071e3;
@@ -16,7 +16,7 @@
             --border: #d2d2d7;
             --success: #34c759;
             --error: #ff3b30;
-            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         * { box-sizing: border-box; }
@@ -31,71 +31,90 @@
         }
 
         .container {
-            width: 100%; max-width: 700px;
-            padding: 40px 20px;
+            width: 100%; max-width: 680px;
+            padding: 50px 20px;
         }
 
-        header { text-align: center; margin-bottom: 40px; }
-        h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin: 0; }
-        p.subtitle { color: var(--secondary-text); font-size: 16px; margin-top: 5px; }
+        header { text-align: center; margin-bottom: 50px; }
+        h1 { font-size: 36px; font-weight: 700; letter-spacing: -0.8px; margin: 0; }
+        p.subtitle { color: var(--secondary-text); font-size: 16px; margin-top: 8px; font-weight: 400; }
 
         .card {
             background: var(--card-bg);
-            border-radius: 18px;
-            padding: 30px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
             margin-bottom: 30px;
+            transition: opacity 0.4s ease;
         }
 
+        h2 { font-size: 24px; font-weight: 600; margin-top: 0; letter-spacing: -0.5px; }
+
         /* Calibration Phase */
-        #text-content { font-size: 18px; line-height: 1.6; color: #333; }
-        .clickable-word { cursor: pointer; transition: background 0.2s; padding: 2px 4px; border-radius: 4px; }
-        .clickable-word:hover { background: #f0f0f0; }
-        .clickable-word.selected { background: #ffe4e1; color: #d9381e; font-weight: 600; }
+        .tools-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .btn-icon { background: #f5f5f7; border: none; padding: 10px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; cursor: pointer; color: var(--text-color); display: flex; align-items: center; gap: 6px; transition: background 0.2s; }
+        .btn-icon:hover { background: #e5e5ea; }
+
+        #text-content { font-size: 18px; line-height: 1.7; color: #333; }
+        .clickable-word { cursor: pointer; transition: all 0.2s; border-bottom: 1px dashed transparent; }
+        .clickable-word:hover { background: #f0f0f0; border-bottom: 1px dashed #999; }
+        .clickable-word.selected { background: #e8f0fe; color: #1a73e8; font-weight: 600; border-radius: 4px; padding: 0 2px; border-bottom: none; }
 
         .btn {
             background: var(--accent); color: white; border: none;
-            padding: 14px 28px; border-radius: 25px; font-size: 16px; font-weight: 600;
-            cursor: pointer; transition: background 0.3s ease; display: inline-block;
-            width: 100%; margin-top: 20px;
+            padding: 16px 32px; border-radius: 30px; font-size: 18px; font-weight: 600;
+            cursor: pointer; transition: background 0.3s ease; display: block;
+            width: 100%; margin-top: 30px; text-align: center;
         }
         .btn:hover { background: var(--accent-hover); }
         .btn:disabled { background: #ccc; cursor: not-allowed; }
         
+        /* Tooltip */
+        #word-tooltip {
+            background: #ffffff; border: 1px solid var(--border); border-radius: 16px;
+            padding: 20px; margin-top: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            display: none; position: relative;
+        }
+        .tt-word { font-size: 20px; font-weight: 700; margin: 0 0 5px 0; color: var(--accent); }
+        .tt-phonetic { font-size: 15px; color: var(--secondary-text); margin-bottom: 15px; font-style: italic; }
+        .tt-def { font-size: 16px; margin-bottom: 15px; }
+        .tt-ex { font-size: 14px; color: #515154; margin: 5px 0; padding-left: 10px; border-left: 3px solid #e5e5ea; }
+        
         /* Exercise Phase */
-        .exercise-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;}
-        .difficulty-badge { padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; text-transform: uppercase; }
+        .exercise-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;}
+        .difficulty-badge { padding: 6px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
         .diff-easy { background: #e8f5e9; color: #2e7d32; }
         .diff-medium { background: #fff3e0; color: #f57c00; }
         .diff-hard { background: #ffebee; color: #c62828; }
 
-        .exercise-sentence { font-size: 20px; font-weight: 400; line-height: 1.5; margin-bottom: 25px; }
+        .exercise-sentence { font-size: 20px; font-weight: 500; line-height: 1.6; margin-bottom: 25px; }
+        .scramble-box { background: #f5f5f7; padding: 15px; border-radius: 12px; margin-bottom: 20px; font-family: monospace; font-size: 16px; color: #515154; line-height: 1.5; }
         
         input[type="text"] {
-            width: 100%; padding: 16px; border-radius: 12px; border: 1px solid var(--border);
-            font-size: 18px; font-family: var(--font-family); margin-bottom: 15px; outline: none;
+            width: 100%; padding: 18px; border-radius: 16px; border: 1px solid var(--border);
+            font-size: 18px; font-family: var(--font-family); margin-bottom: 20px; outline: none;
+            transition: all 0.2s;
         }
-        input[type="text"]:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,113,227,0.2); }
+        input[type="text"]:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(0,113,227,0.15); }
 
-        /* Mic Button */
         .mic-btn-container { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
         .mic-btn {
             background: #f5f5f7; border: 1px solid var(--border); color: var(--text-color);
-            padding: 12px 20px; border-radius: 20px; font-size: 14px; font-weight: 600;
+            padding: 14px 24px; border-radius: 30px; font-size: 15px; font-weight: 600;
             cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.2s;
         }
         .mic-btn:active, .mic-btn.listening { background: #ff3b30; color: white; border-color: #ff3b30; }
         
-        .mic-status { font-size: 14px; color: var(--secondary-text); }
+        .mic-status { font-size: 14px; color: var(--secondary-text); font-weight: 500; }
         .mic-status.success { color: var(--success); font-weight: 600; }
         
-        .feedback { margin-top: 20px; font-size: 16px; font-weight: 600; padding: 15px; border-radius: 12px; display: none; }
+        .feedback { margin-top: 20px; font-size: 16px; font-weight: 600; padding: 16px; border-radius: 12px; display: none; }
         .feedback.correct { background: #e8f5e9; color: #2e7d32; display: block; }
         .feedback.wrong { background: #ffebee; color: #c62828; display: block; }
 
         .loader {
-            border: 3px solid #f3f3f3; border-top: 3px solid var(--accent);
-            border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite;
+            border: 3px solid #f5f5f7; border-top: 3px solid var(--accent);
+            border-radius: 50%; width: 28px; height: 28px; animation: spin 1s linear infinite;
             margin: 0 auto; display: none;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -107,39 +126,51 @@
 
 <div class="container">
     <header>
-        <h1>Smart Tutor</h1>
-        <p class="subtitle" id="day-subtitle">Loading...</p>
+        <h1>Fluency Coach</h1>
+        <p class="subtitle" id="day-subtitle">Loading your journey...</p>
     </header>
 
     <div class="loader" id="main-loader" style="display: block;"></div>
 
     <!-- Phase 1: Calibration -->
     <div class="card hidden" id="calibration-card">
-        <h2 style="margin-top:0;">Step 1: Calibration</h2>
-        <p style="color: var(--secondary-text); margin-bottom: 25px;">Click on any words you don't know well. We will generate custom exercises and schedule them for active recall.</p>
+        <div class="tools-header">
+            <h2 style="margin:0;">Reading & Calibration</h2>
+            <button class="btn-icon" id="read-aloud-btn">🔊 Listen (UK)</button>
+        </div>
+        <p style="color: var(--secondary-text); margin-bottom: 25px;">Click any word you'd like to learn or review.</p>
         
         <div id="text-content"></div>
         
-        <button class="btn" id="start-exercises-btn" style="margin-top: 30px;">Start AI Exercises</button>
+        <div id="word-tooltip">
+            <div id="tt-loader" class="loader" style="display: block; margin: 20px auto;"></div>
+            <div id="tt-content" class="hidden">
+                <p class="tt-word" id="tt-word">Word</p>
+                <p class="tt-phonetic" id="tt-phonetic">/pronunciation/</p>
+                <p class="tt-def" id="tt-def">Definition goes here.</p>
+                <div id="tt-examples"></div>
+            </div>
+        </div>
+        
+        <button class="btn" id="start-exercises-btn" style="margin-top: 35px;">Generate AI Exercises</button>
     </div>
 
     <!-- Phase 2: Exercises -->
     <div class="card hidden" id="exercise-card">
         <div class="exercise-header">
-            <h2 style="margin-top:0;">Step 2: Training</h2>
+            <h2 style="margin:0;">Training</h2>
             <span class="difficulty-badge diff-easy" id="diff-badge">EASY</span>
         </div>
         
-        <p style="color: var(--secondary-text); margin-bottom: 20px;" id="exercise-instruction">Fill in the blank with the correct word.</p>
+        <p style="color: var(--secondary-text); margin-bottom: 20px;" id="exercise-instruction">Fill in the blank.</p>
         
+        <div id="scramble-box" class="scramble-box hidden"></div>
         <div class="exercise-sentence" id="exercise-sentence"></div>
         
         <input type="text" id="answer-input" placeholder="Type your answer here..." autocomplete="off">
         
         <div class="mic-btn-container">
-            <button class="mic-btn" id="mic-btn">
-                🎙️ Hold to Speak
-            </button>
+            <button class="mic-btn" id="mic-btn">🎙️ Hold to Speak</button>
             <span class="mic-status" id="mic-status">Waiting for speech...</span>
         </div>
         
@@ -149,37 +180,44 @@
     </div>
     
     <!-- Phase 3: Done -->
-    <div class="card hidden" id="done-card" style="text-align: center;">
-        <h2 style="font-size: 40px; margin: 0;">🎉</h2>
+    <div class="card hidden" id="done-card" style="text-align: center; padding: 60px 30px;">
+        <h2 style="font-size: 48px; margin: 0 0 15px 0;">🎉</h2>
         <h2>Workout Complete!</h2>
-        <p style="color: var(--secondary-text);">Your progress has been synced to the cloud. The Pimsleur algorithm will schedule these words for review in 1, 7, 14, and 30 days.</p>
+        <p style="color: var(--secondary-text); font-size: 16px; line-height: 1.6;">Your progress is safely stored in the cloud. The Pimsleur algorithm will intelligently schedule these words for review in 1, 7, 14, and 30 days.</p>
     </div>
 </div>
 
 <script>
     const BLOB_URL = "https://jsonblob.com/api/jsonBlob/019f8682-7a50-78b6-9391-f6a94c05601b";
     
-    // Decode API Key safely
     const enc = "ICFeLQdZIj5aLwZHIjNUKTYZLiIXKDwKFysRXQ5QJTsnXSImNhYFEhhFPB5IGQYzJjUbKhc=";
     const GEMINI_KEY = atob(enc).split('').map((c,i) => String.fromCharCode(c.charCodeAt(0) ^ "apple".charCodeAt(i % 5))).join('');
 
     const urlParams = new URLSearchParams(window.location.search);
     const today = parseInt(urlParams.get('day')) || 1;
     
-    let dbData = [];
     let cloudState = { progress: {}, schedule: {} };
     let selectedWords = new Set();
     let currentExercises = [];
     let currentExIndex = 0;
+    let expectedWord = "";
+    let expectedSentence = "";
+    let spokenCorrectly = false;
     
     // UI Elements
     const mainLoader = document.getElementById('main-loader');
     const calibCard = document.getElementById('calibration-card');
     const textContent = document.getElementById('text-content');
     const startBtn = document.getElementById('start-exercises-btn');
+    const readBtn = document.getElementById('read-aloud-btn');
+    
+    const tooltip = document.getElementById('word-tooltip');
+    const ttLoader = document.getElementById('tt-loader');
+    const ttContent = document.getElementById('tt-content');
     
     const exCard = document.getElementById('exercise-card');
     const sentenceEl = document.getElementById('exercise-sentence');
+    const scrambleBox = document.getElementById('scramble-box');
     const inputEl = document.getElementById('answer-input');
     const diffBadge = document.getElementById('diff-badge');
     const instructionEl = document.getElementById('exercise-instruction');
@@ -188,55 +226,131 @@
     const submitBtn = document.getElementById('submit-btn');
     const feedbackEl = document.getElementById('feedback');
     const doneCard = document.getElementById('done-card');
-    
-    let spokenCorrectly = false;
-    let expectedWord = "";
+
+    let fullTextToRead = "";
+    let tooltipCache = {};
 
     async function init() {
-        document.getElementById('day-subtitle').innerText = `Day ${today} Workout`;
+        document.getElementById('day-subtitle').innerText = `Day ${today} • British English`;
         
         try {
-            // Fetch Content DB
             const res1 = await fetch('database.json');
-            dbData = await res1.json();
+            const dbData = await res1.json();
             const todayData = dbData.find(d => d.day === today);
             
-            // Fetch Cloud State (JSONBlob)
             const res2 = await fetch(BLOB_URL);
             cloudState = await res2.json();
-            
             if(!cloudState.schedule) cloudState.schedule = {};
             
-            // Setup Calibration Text
             if (todayData) {
-                const words = todayData.curiosity_text.split(/([\\s.,;!?]+)/);
-                textContent.innerHTML = words.map(w => {
-                    if (/[a-zA-Z]/.test(w)) return `<span class="clickable-word">${w}</span>`;
-                    return w;
+                fullTextToRead = todayData.curiosity_text;
+                
+                // Robust word parsing: split by non-letters, keep them in array to reconstruct exact text
+                const tokens = fullTextToRead.split(/([a-zA-Z]+)/);
+                textContent.innerHTML = tokens.map(t => {
+                    if (/^[a-zA-Z]+$/.test(t)) return `<span class="clickable-word">${t}</span>`;
+                    // Convert newlines to HTML breaks
+                    return t.replace(/\\n/g, '<br>');
                 }).join('');
                 
                 document.querySelectorAll('.clickable-word').forEach(el => {
-                    el.addEventListener('click', (e) => {
-                        e.target.classList.toggle('selected');
+                    el.addEventListener('click', async (e) => {
                         const word = e.target.innerText.toLowerCase();
-                        if (selectedWords.has(word)) selectedWords.delete(word);
-                        else selectedWords.add(word);
+                        const isSelecting = !e.target.classList.contains('selected');
+                        e.target.classList.toggle('selected');
+                        
+                        if (isSelecting) {
+                            selectedWords.add(word);
+                            showTooltip(word);
+                        } else {
+                            selectedWords.delete(word);
+                            tooltip.style.display = 'none';
+                        }
                     });
                 });
                 
-                // Add due words from Pimsleur schedule
+                // Select due words automatically
                 const dueWords = getDueWords();
-                dueWords.forEach(w => selectedWords.add(w));
+                dueWords.forEach(w => {
+                    selectedWords.add(w);
+                    document.querySelectorAll('.clickable-word').forEach(el => {
+                        if (el.innerText.toLowerCase() === w) el.classList.add('selected');
+                    });
+                });
                 
                 mainLoader.style.display = 'none';
                 calibCard.classList.remove('hidden');
             }
         } catch(e) {
             console.error(e);
-            alert("Error loading data.");
+            alert("Error loading content.");
         }
     }
-    
+
+    // TTS
+    readBtn.addEventListener('click', () => {
+        if (window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(fullTextToRead);
+            utterance.lang = 'en-GB';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("Your browser does not support Text-to-Speech.");
+        }
+    });
+
+    async function showTooltip(word) {
+        tooltip.style.display = 'block';
+        ttContent.classList.add('hidden');
+        ttLoader.style.display = 'block';
+        
+        if (tooltipCache[word]) {
+            renderTooltip(tooltipCache[word]);
+            return;
+        }
+
+        const prompt = `Provide educational details for the English word "${word}". 
+        Return ONLY a JSON object with this exact structure:
+        {
+          "word": "${word}",
+          "phonetic_br": "brasilizada phonetic spelling (e.g. chou queisin for showcasing, fá-dã for father)",
+          "definition": "brief definition in English",
+          "examples": ["easy example", "medium example", "hard example"]
+        }`;
+
+        try {
+            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ contents: [{parts:[{text: prompt}]}] })
+            });
+            const data = await res.json();
+            let jsonText = data.candidates[0].content.parts[0].text;
+            const match = jsonText.match(/\\{.*\\}/s);
+            const resObj = JSON.parse(match ? match[0] : jsonText);
+            
+            tooltipCache[word] = resObj;
+            renderTooltip(resObj);
+        } catch(e) {
+            console.error(e);
+            tooltip.style.display = 'none';
+        }
+    }
+
+    function renderTooltip(data) {
+        document.getElementById('tt-word').innerText = data.word;
+        document.getElementById('tt-phonetic').innerText = `🔊 Pronuncia-se: ${data.phonetic_br}`;
+        document.getElementById('tt-def').innerText = data.definition;
+        
+        let exHtml = "";
+        data.examples.forEach(ex => { exHtml += `<p class="tt-ex">${ex}</p>`; });
+        document.getElementById('tt-examples').innerHTML = exHtml;
+        
+        ttLoader.style.display = 'none';
+        ttContent.classList.remove('hidden');
+    }
+
     function getDueWords() {
         let due = [];
         for (const [word, days] of Object.entries(cloudState.schedule)) {
@@ -246,15 +360,11 @@
     }
     
     async function updateCloudState() {
-        // Schedule new words
-        const pimsleurIntervals = [1, 7, 14, 30];
+        const pimsleur = [1, 7, 14, 30];
         selectedWords.forEach(word => {
-            if(!cloudState.schedule[word]) {
-                cloudState.schedule[word] = pimsleurIntervals.map(i => today + i);
-            }
+            if(!cloudState.schedule[word]) cloudState.schedule[word] = pimsleur.map(i => today + i);
         });
         
-        // Remove due words from schedule as they were reviewed
         for (const [word, days] of Object.entries(cloudState.schedule)) {
             cloudState.schedule[word] = days.filter(d => d !== today);
         }
@@ -268,11 +378,11 @@
 
     startBtn.addEventListener('click', async () => {
         if (selectedWords.size === 0) {
-            alert("Please select at least one word, or you have no reviews due today.");
+            alert("Select at least one word to start training.");
             return;
         }
         
-        startBtn.innerHTML = '<div class="loader" style="display:inline-block; border-color:#fff; border-top-color:transparent; width:16px; height:16px;"></div> Generating AI Exercises...';
+        startBtn.innerHTML = '<div class="loader" style="display:inline-block; border-color:#fff; border-top-color:transparent; width:16px; height:16px;"></div> Generating AI Plan...';
         startBtn.disabled = true;
         
         await updateCloudState();
@@ -284,35 +394,41 @@
     });
 
     async function generateExercises() {
-        currentExercises = [];
         const wordsList = Array.from(selectedWords);
-        
-        // Call Gemini to generate sentences
-        const prompt = `You are an English tutor. Generate exercises for these words: ${wordsList.join(', ')}.
-        Return a JSON array of objects. Each object must have:
-        1. "word": the target word.
-        2. "difficulty": randomly pick from "easy", "medium", "hard".
-        3. "sentence_en": a natural english sentence using the word.
-        4. "sentence_pt": portuguese translation of the sentence.
-        Output ONLY valid JSON.`;
+        const prompt = `Generate English exercises for these words: ${wordsList.join(', ')}.
+        Return ONLY a JSON array of objects.
+        Structure per object:
+        {
+          "word": "target word",
+          "difficulty": "randomly pick easy, medium, or hard",
+          "sentence": "a natural sentence using the word"
+        }`;
 
         try {
             const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    contents: [{parts:[{text: prompt}]}]
-                })
+                body: JSON.stringify({ contents: [{parts:[{text: prompt}]}] })
             });
             const data = await res.json();
             let jsonText = data.candidates[0].content.parts[0].text;
-            // Clean markdown
-            jsonText = jsonText.replace(/```json/g, '').replace(/```/g, '').trim();
-            currentExercises = JSON.parse(jsonText);
+            const match = jsonText.match(/\\[.*\\]/s);
+            currentExercises = JSON.parse(match ? match[0] : jsonText);
         } catch(e) {
-            console.error("Gemini Error:", e);
-            alert("Error generating exercises. Try again.");
+            console.error(e);
+            alert("Error generating exercises. Please refresh.");
         }
+    }
+
+    // Shuffle array utility for Hard mode
+    function shuffle(array) {
+        let currentIndex = array.length, randomIndex;
+        while (currentIndex != 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+        }
+        return array;
     }
 
     function showExercise() {
@@ -324,28 +440,40 @@
         
         const ex = currentExercises[currentExIndex];
         expectedWord = ex.word.toLowerCase();
+        expectedSentence = ex.sentence;
         
-        // Reset UI
         inputEl.value = "";
-        feedbackEl.className = "feedback";
+        feedbackEl.className = "feedback hidden";
         spokenCorrectly = false;
         micStatus.innerText = "Waiting for speech...";
         micStatus.className = "mic-status";
         submitBtn.disabled = true;
+        scrambleBox.classList.add('hidden');
+        sentenceEl.classList.remove('hidden');
         
         if (ex.difficulty === 'easy') {
             diffBadge.className = "difficulty-badge diff-easy"; diffBadge.innerText = "EASY";
-            instructionEl.innerText = "Fill in the blank (First letter given)";
+            instructionEl.innerText = "Fill in the blank (First letter given).";
             let hint = expectedWord[0] + "_".repeat(expectedWord.length - 1);
-            sentenceEl.innerHTML = ex.sentence_en.replace(new RegExp(ex.word, 'ig'), `<strong>${hint}</strong>`);
+            sentenceEl.innerHTML = ex.sentence.replace(new RegExp(`\\b${ex.word}\\b`, 'ig'), `<strong>${hint}</strong>`);
+            inputEl.placeholder = "Type the missing word...";
         } else if (ex.difficulty === 'medium') {
             diffBadge.className = "difficulty-badge diff-medium"; diffBadge.innerText = "MEDIUM";
-            instructionEl.innerText = "Fill in the blank";
-            sentenceEl.innerHTML = ex.sentence_en.replace(new RegExp(ex.word, 'ig'), `<strong>_____</strong>`);
+            instructionEl.innerText = "Fill in the blank.";
+            sentenceEl.innerHTML = ex.sentence.replace(new RegExp(`\\b${ex.word}\\b`, 'ig'), `<strong>_____</strong>`);
+            inputEl.placeholder = "Type the missing word...";
         } else {
             diffBadge.className = "difficulty-badge diff-hard"; diffBadge.innerText = "HARD";
-            instructionEl.innerText = "Translate the sentence using the target word";
-            sentenceEl.innerHTML = `<em>"${ex.sentence_pt}"</em><br><span style="font-size:14px;color:#86868b;">Target word: ${ex.word}</span>`;
+            instructionEl.innerText = "Unscramble the words and type the full sentence below.";
+            
+            // Generate jumbled words
+            let words = ex.sentence.replace(/[.,!?]/g, '').split(' ');
+            let jumbled = shuffle([...words]).join(' / ');
+            
+            scrambleBox.innerText = jumbled;
+            scrambleBox.classList.remove('hidden');
+            sentenceEl.classList.add('hidden');
+            inputEl.placeholder = "Type the full sentence...";
         }
     }
 
@@ -357,7 +485,7 @@
         recognition = new SpeechRecognition();
         recognition.continuous = false;
         recognition.interimResults = false;
-        recognition.lang = 'en-GB'; // British English requested
+        recognition.lang = 'en-GB';
 
         recognition.onstart = function() {
             micBtn.classList.add('listening');
@@ -368,10 +496,17 @@
             const transcript = event.results[0][0].transcript.toLowerCase();
             const ex = currentExercises[currentExIndex];
             
-            // Check if they spoke the target word or the whole sentence
-            if (transcript.includes(expectedWord) || transcript.includes(expectedWord.replace(/[.,]/g,''))) {
+            let passed = false;
+            if (ex.difficulty === 'hard') {
+                // Must speak roughly the full sentence
+                if (transcript.includes(expectedWord) && transcript.length > expectedWord.length) passed = true;
+            } else {
+                if (transcript.includes(expectedWord)) passed = true;
+            }
+
+            if (passed) {
                 spokenCorrectly = true;
-                micStatus.innerText = "✓ Pronunciation Approved!";
+                micStatus.innerText = "✓ Accent Approved!";
                 micStatus.className = "mic-status success";
                 checkEnableSubmit();
             } else {
@@ -391,12 +526,10 @@
             micBtn.innerHTML = "🎙️ Hold to Speak";
         };
     } else {
-        // Fallback if not supported
         spokenCorrectly = true;
-        micStatus.innerText = "Speech recognition not supported. You may proceed.";
+        micStatus.innerText = "Speech recognition unsupported. Proceed.";
     }
 
-    // Hold to speak logic
     micBtn.addEventListener('mousedown', () => { if(recognition) recognition.start(); });
     micBtn.addEventListener('mouseup', () => { if(recognition) recognition.stop(); });
     micBtn.addEventListener('touchstart', (e) => { e.preventDefault(); if(recognition) recognition.start(); });
@@ -418,8 +551,10 @@
         
         let isCorrect = false;
         if (ex.difficulty === 'hard') {
-            // Simple check if target word is in their translation
-            isCorrect = val.includes(expectedWord);
+            // Check if they typed the full sentence correctly (ignoring punctuation)
+            const cleanExpected = expectedSentence.toLowerCase().replace(/[.,!?]/g, '');
+            const cleanVal = val.replace(/[.,!?]/g, '');
+            isCorrect = (cleanVal === cleanExpected);
         } else {
             isCorrect = (val === expectedWord);
         }
@@ -430,11 +565,14 @@
             setTimeout(() => {
                 currentExIndex++;
                 showExercise();
-            }, 1500);
+            }, 1200);
         } else {
-            feedbackEl.innerText = `Wrong. The answer involves: ${expectedWord}`;
+            if (ex.difficulty === 'hard') {
+                feedbackEl.innerHTML = `Wrong. Correct sentence:<br><em>${expectedSentence}</em>`;
+            } else {
+                feedbackEl.innerText = `Wrong. The correct word is: ${expectedWord}`;
+            }
             feedbackEl.className = "feedback wrong";
-            // In Pimsleur, wrong answers should reset, but for this quick flow, we just let them try again
         }
     });
 
