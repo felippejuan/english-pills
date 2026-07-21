@@ -1,152 +1,137 @@
 [
     {
         "day": 1,
-        "topic": "Running an Effective Daily Stand-Up",
-        "curiosity_title": "Keeping It Brief",
-        "curiosity_text": "Daily stand-up meetings are meant to be quick check-ins, usually lasting no more than 15 minutes. The goal is to align the team, flag any roadblocks, and move on. However, people often get bogged down in technical details or side discussions. A great way to handle this is to gently interrupt and suggest taking the conversation offline. For example, you can say 'Let's take this offline so we don't hold everyone up.' This keeps the meeting on track while ensuring the issue still gets addressed later.\n\nAnother key aspect is setting a clear agenda. Everyone should answer three simple questions: What did you do yesterday? What are you doing today? Are there any blockers? If someone starts rambling, the Scrum Master or team lead should step in to steer the focus back to the core updates.",
-        "grammar_tip": "Phrasal Verb: 'Bog down' means to be prevented from making progress, usually because of too much detail or complexity.",
-        "youtube_video": "https://www.youtube.com/watch?v=0hOvtA5q5YQ",
-        "youtube_thumbnail": "https://img.youtube.com/vi/0hOvtA5q5YQ/maxresdefault.jpg",
-        "youtube_title": "▶️ How to run a Daily Scrum"
+        "topic": "The Secret Behind the Michelin Guide",
+        "curiosity_title": "Tires and Fine Dining",
+        "curiosity_text": "Have you ever wondered why a tire company gives out stars to the best restaurants in the world? It sounds pretty random, right? Back in 1900, the Michelin brothers wanted people to drive their cars more often so they would buy more tires. But there was a problem: people didn't really have many places to drive to.\n\nSo, they came up with a clever idea. They created a free guide book filled with maps, tire repair tips, and most importantly, a list of great hotels and restaurants. The idea was simple: if people want to try out a nice restaurant in another city, they will drive there, wear out their tires, and eventually need to buy new ones from Michelin. What started as a sneaky marketing trick turned into the most respected food guide on the planet.",
+        "grammar_tip": "Expression: 'Come up with' means to think of an idea or a plan. Example: 'They came up with a clever idea to sell more tires.'",
+        "youtube_video": "https://www.youtube.com/watch?v=FqE43_Qc6Lg",
+        "youtube_title": "▶️ Watch: The Michelin Guide Story"
     },
     {
         "day": 2,
-        "topic": "Giving Constructive Feedback",
-        "curiosity_title": "The Art of Feedback",
-        "curiosity_text": "Giving feedback to a colleague can be challenging, especially if you need to point out a mistake. A highly effective strategy is the 'Situation-Behavior-Impact' framework. Instead of saying 'Your presentation was confusing', you focus on the facts: 'During yesterday's meeting (Situation), you skipped the financial slides (Behavior), which left the clients confused about the budget (Impact).'\n\nThis approach removes personal emotion from the critique and makes the feedback purely objective. It allows the recipient to understand exactly what went wrong without feeling personally attacked. Following up with a constructive suggestion, like 'Perhaps next time we can do a dry run beforehand', helps build a supportive environment.",
-        "grammar_tip": "Collocation: 'Point out' means to direct attention toward something, often a fact, mistake, or detail.",
-        "youtube_video": "https://www.youtube.com/watch?v=wtl5UhiZAAM",
-        "youtube_thumbnail": "https://img.youtube.com/vi/wtl5UhiZAAM/hqdefault.jpg",
-        "youtube_title": "▶️ How to Give Feedback"
+        "topic": "How the Weekend was Invented",
+        "curiosity_title": "Henry Ford's Masterplan",
+        "curiosity_text": "Most of us look forward to Saturday and Sunday, but the 'two-day weekend' wasn't always a normal thing. For a long time, people worked six days a week and only had Sunday off for rest. So, who changed this?\n\nIn 1926, Henry Ford, the famous car maker, decided to give his factory workers both Saturday and Sunday off, without cutting their pay. He didn't just do this because he was a nice boss. He figured out that if people had more free time on the weekends, they would have a reason to buy a car and go on trips with their families. By giving them extra time off, he actually created more customers for his own business. Soon after, other companies followed his lead, and the modern weekend was born.",
+        "grammar_tip": "Phrasal Verb: 'Look forward to' means to feel happy and excited about something that is going to happen. Example: 'I always look forward to the weekend.'",
+        "youtube_video": "https://www.youtube.com/watch?v=Ue-jF0cEiyg",
+        "youtube_title": "▶️ Watch: Why we have weekends"
     },
     {
         "day": 3,
-        "topic": "Running an Effective Daily Stand-Up",
-        "curiosity_title": "Keeping It Brief",
-        "curiosity_text": "Daily stand-up meetings are meant to be quick check-ins, usually lasting no more than 15 minutes. The goal is to align the team, flag any roadblocks, and move on. However, people often get bogged down in technical details or side discussions. A great way to handle this is to gently interrupt and suggest taking the conversation offline. For example, you can say 'Let's take this offline so we don't hold everyone up.' This keeps the meeting on track while ensuring the issue still gets addressed later.\n\nAnother key aspect is setting a clear agenda. Everyone should answer three simple questions: What did you do yesterday? What are you doing today? Are there any blockers? If someone starts rambling, the Scrum Master or team lead should step in to steer the focus back to the core updates.",
-        "grammar_tip": "Phrasal Verb: 'Bog down' means to be prevented from making progress, usually because of too much detail or complexity.",
-        "youtube_video": "https://www.youtube.com/watch?v=0hOvtA5q5YQ",
-        "youtube_thumbnail": "https://img.youtube.com/vi/0hOvtA5q5YQ/maxresdefault.jpg",
-        "youtube_title": "▶️ How to run a Daily Scrum"
+        "topic": "The Secret Behind the Michelin Guide",
+        "curiosity_title": "Tires and Fine Dining",
+        "curiosity_text": "Have you ever wondered why a tire company gives out stars to the best restaurants in the world? It sounds pretty random, right? Back in 1900, the Michelin brothers wanted people to drive their cars more often so they would buy more tires. But there was a problem: people didn't really have many places to drive to.\n\nSo, they came up with a clever idea. They created a free guide book filled with maps, tire repair tips, and most importantly, a list of great hotels and restaurants. The idea was simple: if people want to try out a nice restaurant in another city, they will drive there, wear out their tires, and eventually need to buy new ones from Michelin. What started as a sneaky marketing trick turned into the most respected food guide on the planet.",
+        "grammar_tip": "Expression: 'Come up with' means to think of an idea or a plan. Example: 'They came up with a clever idea to sell more tires.'",
+        "youtube_video": "https://www.youtube.com/watch?v=FqE43_Qc6Lg",
+        "youtube_title": "▶️ Watch: The Michelin Guide Story"
     },
     {
         "day": 4,
-        "topic": "Giving Constructive Feedback",
-        "curiosity_title": "The Art of Feedback",
-        "curiosity_text": "Giving feedback to a colleague can be challenging, especially if you need to point out a mistake. A highly effective strategy is the 'Situation-Behavior-Impact' framework. Instead of saying 'Your presentation was confusing', you focus on the facts: 'During yesterday's meeting (Situation), you skipped the financial slides (Behavior), which left the clients confused about the budget (Impact).'\n\nThis approach removes personal emotion from the critique and makes the feedback purely objective. It allows the recipient to understand exactly what went wrong without feeling personally attacked. Following up with a constructive suggestion, like 'Perhaps next time we can do a dry run beforehand', helps build a supportive environment.",
-        "grammar_tip": "Collocation: 'Point out' means to direct attention toward something, often a fact, mistake, or detail.",
-        "youtube_video": "https://www.youtube.com/watch?v=wtl5UhiZAAM",
-        "youtube_thumbnail": "https://img.youtube.com/vi/wtl5UhiZAAM/hqdefault.jpg",
-        "youtube_title": "▶️ How to Give Feedback"
+        "topic": "How the Weekend was Invented",
+        "curiosity_title": "Henry Ford's Masterplan",
+        "curiosity_text": "Most of us look forward to Saturday and Sunday, but the 'two-day weekend' wasn't always a normal thing. For a long time, people worked six days a week and only had Sunday off for rest. So, who changed this?\n\nIn 1926, Henry Ford, the famous car maker, decided to give his factory workers both Saturday and Sunday off, without cutting their pay. He didn't just do this because he was a nice boss. He figured out that if people had more free time on the weekends, they would have a reason to buy a car and go on trips with their families. By giving them extra time off, he actually created more customers for his own business. Soon after, other companies followed his lead, and the modern weekend was born.",
+        "grammar_tip": "Phrasal Verb: 'Look forward to' means to feel happy and excited about something that is going to happen. Example: 'I always look forward to the weekend.'",
+        "youtube_video": "https://www.youtube.com/watch?v=Ue-jF0cEiyg",
+        "youtube_title": "▶️ Watch: Why we have weekends"
     },
     {
         "day": 5,
-        "topic": "Running an Effective Daily Stand-Up",
-        "curiosity_title": "Keeping It Brief",
-        "curiosity_text": "Daily stand-up meetings are meant to be quick check-ins, usually lasting no more than 15 minutes. The goal is to align the team, flag any roadblocks, and move on. However, people often get bogged down in technical details or side discussions. A great way to handle this is to gently interrupt and suggest taking the conversation offline. For example, you can say 'Let's take this offline so we don't hold everyone up.' This keeps the meeting on track while ensuring the issue still gets addressed later.\n\nAnother key aspect is setting a clear agenda. Everyone should answer three simple questions: What did you do yesterday? What are you doing today? Are there any blockers? If someone starts rambling, the Scrum Master or team lead should step in to steer the focus back to the core updates.",
-        "grammar_tip": "Phrasal Verb: 'Bog down' means to be prevented from making progress, usually because of too much detail or complexity.",
-        "youtube_video": "https://www.youtube.com/watch?v=0hOvtA5q5YQ",
-        "youtube_thumbnail": "https://img.youtube.com/vi/0hOvtA5q5YQ/maxresdefault.jpg",
-        "youtube_title": "▶️ How to run a Daily Scrum"
+        "topic": "The Secret Behind the Michelin Guide",
+        "curiosity_title": "Tires and Fine Dining",
+        "curiosity_text": "Have you ever wondered why a tire company gives out stars to the best restaurants in the world? It sounds pretty random, right? Back in 1900, the Michelin brothers wanted people to drive their cars more often so they would buy more tires. But there was a problem: people didn't really have many places to drive to.\n\nSo, they came up with a clever idea. They created a free guide book filled with maps, tire repair tips, and most importantly, a list of great hotels and restaurants. The idea was simple: if people want to try out a nice restaurant in another city, they will drive there, wear out their tires, and eventually need to buy new ones from Michelin. What started as a sneaky marketing trick turned into the most respected food guide on the planet.",
+        "grammar_tip": "Expression: 'Come up with' means to think of an idea or a plan. Example: 'They came up with a clever idea to sell more tires.'",
+        "youtube_video": "https://www.youtube.com/watch?v=FqE43_Qc6Lg",
+        "youtube_title": "▶️ Watch: The Michelin Guide Story"
     },
     {
         "day": 6,
-        "topic": "Giving Constructive Feedback",
-        "curiosity_title": "The Art of Feedback",
-        "curiosity_text": "Giving feedback to a colleague can be challenging, especially if you need to point out a mistake. A highly effective strategy is the 'Situation-Behavior-Impact' framework. Instead of saying 'Your presentation was confusing', you focus on the facts: 'During yesterday's meeting (Situation), you skipped the financial slides (Behavior), which left the clients confused about the budget (Impact).'\n\nThis approach removes personal emotion from the critique and makes the feedback purely objective. It allows the recipient to understand exactly what went wrong without feeling personally attacked. Following up with a constructive suggestion, like 'Perhaps next time we can do a dry run beforehand', helps build a supportive environment.",
-        "grammar_tip": "Collocation: 'Point out' means to direct attention toward something, often a fact, mistake, or detail.",
-        "youtube_video": "https://www.youtube.com/watch?v=wtl5UhiZAAM",
-        "youtube_thumbnail": "https://img.youtube.com/vi/wtl5UhiZAAM/hqdefault.jpg",
-        "youtube_title": "▶️ How to Give Feedback"
+        "topic": "How the Weekend was Invented",
+        "curiosity_title": "Henry Ford's Masterplan",
+        "curiosity_text": "Most of us look forward to Saturday and Sunday, but the 'two-day weekend' wasn't always a normal thing. For a long time, people worked six days a week and only had Sunday off for rest. So, who changed this?\n\nIn 1926, Henry Ford, the famous car maker, decided to give his factory workers both Saturday and Sunday off, without cutting their pay. He didn't just do this because he was a nice boss. He figured out that if people had more free time on the weekends, they would have a reason to buy a car and go on trips with their families. By giving them extra time off, he actually created more customers for his own business. Soon after, other companies followed his lead, and the modern weekend was born.",
+        "grammar_tip": "Phrasal Verb: 'Look forward to' means to feel happy and excited about something that is going to happen. Example: 'I always look forward to the weekend.'",
+        "youtube_video": "https://www.youtube.com/watch?v=Ue-jF0cEiyg",
+        "youtube_title": "▶️ Watch: Why we have weekends"
     },
     {
         "day": 7,
-        "topic": "Running an Effective Daily Stand-Up",
-        "curiosity_title": "Keeping It Brief",
-        "curiosity_text": "Daily stand-up meetings are meant to be quick check-ins, usually lasting no more than 15 minutes. The goal is to align the team, flag any roadblocks, and move on. However, people often get bogged down in technical details or side discussions. A great way to handle this is to gently interrupt and suggest taking the conversation offline. For example, you can say 'Let's take this offline so we don't hold everyone up.' This keeps the meeting on track while ensuring the issue still gets addressed later.\n\nAnother key aspect is setting a clear agenda. Everyone should answer three simple questions: What did you do yesterday? What are you doing today? Are there any blockers? If someone starts rambling, the Scrum Master or team lead should step in to steer the focus back to the core updates.",
-        "grammar_tip": "Phrasal Verb: 'Bog down' means to be prevented from making progress, usually because of too much detail or complexity.",
-        "youtube_video": "https://www.youtube.com/watch?v=0hOvtA5q5YQ",
-        "youtube_thumbnail": "https://img.youtube.com/vi/0hOvtA5q5YQ/maxresdefault.jpg",
-        "youtube_title": "▶️ How to run a Daily Scrum"
+        "topic": "The Secret Behind the Michelin Guide",
+        "curiosity_title": "Tires and Fine Dining",
+        "curiosity_text": "Have you ever wondered why a tire company gives out stars to the best restaurants in the world? It sounds pretty random, right? Back in 1900, the Michelin brothers wanted people to drive their cars more often so they would buy more tires. But there was a problem: people didn't really have many places to drive to.\n\nSo, they came up with a clever idea. They created a free guide book filled with maps, tire repair tips, and most importantly, a list of great hotels and restaurants. The idea was simple: if people want to try out a nice restaurant in another city, they will drive there, wear out their tires, and eventually need to buy new ones from Michelin. What started as a sneaky marketing trick turned into the most respected food guide on the planet.",
+        "grammar_tip": "Expression: 'Come up with' means to think of an idea or a plan. Example: 'They came up with a clever idea to sell more tires.'",
+        "youtube_video": "https://www.youtube.com/watch?v=FqE43_Qc6Lg",
+        "youtube_title": "▶️ Watch: The Michelin Guide Story"
     },
     {
         "day": 8,
-        "topic": "Giving Constructive Feedback",
-        "curiosity_title": "The Art of Feedback",
-        "curiosity_text": "Giving feedback to a colleague can be challenging, especially if you need to point out a mistake. A highly effective strategy is the 'Situation-Behavior-Impact' framework. Instead of saying 'Your presentation was confusing', you focus on the facts: 'During yesterday's meeting (Situation), you skipped the financial slides (Behavior), which left the clients confused about the budget (Impact).'\n\nThis approach removes personal emotion from the critique and makes the feedback purely objective. It allows the recipient to understand exactly what went wrong without feeling personally attacked. Following up with a constructive suggestion, like 'Perhaps next time we can do a dry run beforehand', helps build a supportive environment.",
-        "grammar_tip": "Collocation: 'Point out' means to direct attention toward something, often a fact, mistake, or detail.",
-        "youtube_video": "https://www.youtube.com/watch?v=wtl5UhiZAAM",
-        "youtube_thumbnail": "https://img.youtube.com/vi/wtl5UhiZAAM/hqdefault.jpg",
-        "youtube_title": "▶️ How to Give Feedback"
+        "topic": "How the Weekend was Invented",
+        "curiosity_title": "Henry Ford's Masterplan",
+        "curiosity_text": "Most of us look forward to Saturday and Sunday, but the 'two-day weekend' wasn't always a normal thing. For a long time, people worked six days a week and only had Sunday off for rest. So, who changed this?\n\nIn 1926, Henry Ford, the famous car maker, decided to give his factory workers both Saturday and Sunday off, without cutting their pay. He didn't just do this because he was a nice boss. He figured out that if people had more free time on the weekends, they would have a reason to buy a car and go on trips with their families. By giving them extra time off, he actually created more customers for his own business. Soon after, other companies followed his lead, and the modern weekend was born.",
+        "grammar_tip": "Phrasal Verb: 'Look forward to' means to feel happy and excited about something that is going to happen. Example: 'I always look forward to the weekend.'",
+        "youtube_video": "https://www.youtube.com/watch?v=Ue-jF0cEiyg",
+        "youtube_title": "▶️ Watch: Why we have weekends"
     },
     {
         "day": 9,
-        "topic": "Running an Effective Daily Stand-Up",
-        "curiosity_title": "Keeping It Brief",
-        "curiosity_text": "Daily stand-up meetings are meant to be quick check-ins, usually lasting no more than 15 minutes. The goal is to align the team, flag any roadblocks, and move on. However, people often get bogged down in technical details or side discussions. A great way to handle this is to gently interrupt and suggest taking the conversation offline. For example, you can say 'Let's take this offline so we don't hold everyone up.' This keeps the meeting on track while ensuring the issue still gets addressed later.\n\nAnother key aspect is setting a clear agenda. Everyone should answer three simple questions: What did you do yesterday? What are you doing today? Are there any blockers? If someone starts rambling, the Scrum Master or team lead should step in to steer the focus back to the core updates.",
-        "grammar_tip": "Phrasal Verb: 'Bog down' means to be prevented from making progress, usually because of too much detail or complexity.",
-        "youtube_video": "https://www.youtube.com/watch?v=0hOvtA5q5YQ",
-        "youtube_thumbnail": "https://img.youtube.com/vi/0hOvtA5q5YQ/maxresdefault.jpg",
-        "youtube_title": "▶️ How to run a Daily Scrum"
+        "topic": "The Secret Behind the Michelin Guide",
+        "curiosity_title": "Tires and Fine Dining",
+        "curiosity_text": "Have you ever wondered why a tire company gives out stars to the best restaurants in the world? It sounds pretty random, right? Back in 1900, the Michelin brothers wanted people to drive their cars more often so they would buy more tires. But there was a problem: people didn't really have many places to drive to.\n\nSo, they came up with a clever idea. They created a free guide book filled with maps, tire repair tips, and most importantly, a list of great hotels and restaurants. The idea was simple: if people want to try out a nice restaurant in another city, they will drive there, wear out their tires, and eventually need to buy new ones from Michelin. What started as a sneaky marketing trick turned into the most respected food guide on the planet.",
+        "grammar_tip": "Expression: 'Come up with' means to think of an idea or a plan. Example: 'They came up with a clever idea to sell more tires.'",
+        "youtube_video": "https://www.youtube.com/watch?v=FqE43_Qc6Lg",
+        "youtube_title": "▶️ Watch: The Michelin Guide Story"
     },
     {
         "day": 10,
-        "topic": "Giving Constructive Feedback",
-        "curiosity_title": "The Art of Feedback",
-        "curiosity_text": "Giving feedback to a colleague can be challenging, especially if you need to point out a mistake. A highly effective strategy is the 'Situation-Behavior-Impact' framework. Instead of saying 'Your presentation was confusing', you focus on the facts: 'During yesterday's meeting (Situation), you skipped the financial slides (Behavior), which left the clients confused about the budget (Impact).'\n\nThis approach removes personal emotion from the critique and makes the feedback purely objective. It allows the recipient to understand exactly what went wrong without feeling personally attacked. Following up with a constructive suggestion, like 'Perhaps next time we can do a dry run beforehand', helps build a supportive environment.",
-        "grammar_tip": "Collocation: 'Point out' means to direct attention toward something, often a fact, mistake, or detail.",
-        "youtube_video": "https://www.youtube.com/watch?v=wtl5UhiZAAM",
-        "youtube_thumbnail": "https://img.youtube.com/vi/wtl5UhiZAAM/hqdefault.jpg",
-        "youtube_title": "▶️ How to Give Feedback"
+        "topic": "How the Weekend was Invented",
+        "curiosity_title": "Henry Ford's Masterplan",
+        "curiosity_text": "Most of us look forward to Saturday and Sunday, but the 'two-day weekend' wasn't always a normal thing. For a long time, people worked six days a week and only had Sunday off for rest. So, who changed this?\n\nIn 1926, Henry Ford, the famous car maker, decided to give his factory workers both Saturday and Sunday off, without cutting their pay. He didn't just do this because he was a nice boss. He figured out that if people had more free time on the weekends, they would have a reason to buy a car and go on trips with their families. By giving them extra time off, he actually created more customers for his own business. Soon after, other companies followed his lead, and the modern weekend was born.",
+        "grammar_tip": "Phrasal Verb: 'Look forward to' means to feel happy and excited about something that is going to happen. Example: 'I always look forward to the weekend.'",
+        "youtube_video": "https://www.youtube.com/watch?v=Ue-jF0cEiyg",
+        "youtube_title": "▶️ Watch: Why we have weekends"
     },
     {
         "day": 11,
-        "topic": "Running an Effective Daily Stand-Up",
-        "curiosity_title": "Keeping It Brief",
-        "curiosity_text": "Daily stand-up meetings are meant to be quick check-ins, usually lasting no more than 15 minutes. The goal is to align the team, flag any roadblocks, and move on. However, people often get bogged down in technical details or side discussions. A great way to handle this is to gently interrupt and suggest taking the conversation offline. For example, you can say 'Let's take this offline so we don't hold everyone up.' This keeps the meeting on track while ensuring the issue still gets addressed later.\n\nAnother key aspect is setting a clear agenda. Everyone should answer three simple questions: What did you do yesterday? What are you doing today? Are there any blockers? If someone starts rambling, the Scrum Master or team lead should step in to steer the focus back to the core updates.",
-        "grammar_tip": "Phrasal Verb: 'Bog down' means to be prevented from making progress, usually because of too much detail or complexity.",
-        "youtube_video": "https://www.youtube.com/watch?v=0hOvtA5q5YQ",
-        "youtube_thumbnail": "https://img.youtube.com/vi/0hOvtA5q5YQ/maxresdefault.jpg",
-        "youtube_title": "▶️ How to run a Daily Scrum"
+        "topic": "The Secret Behind the Michelin Guide",
+        "curiosity_title": "Tires and Fine Dining",
+        "curiosity_text": "Have you ever wondered why a tire company gives out stars to the best restaurants in the world? It sounds pretty random, right? Back in 1900, the Michelin brothers wanted people to drive their cars more often so they would buy more tires. But there was a problem: people didn't really have many places to drive to.\n\nSo, they came up with a clever idea. They created a free guide book filled with maps, tire repair tips, and most importantly, a list of great hotels and restaurants. The idea was simple: if people want to try out a nice restaurant in another city, they will drive there, wear out their tires, and eventually need to buy new ones from Michelin. What started as a sneaky marketing trick turned into the most respected food guide on the planet.",
+        "grammar_tip": "Expression: 'Come up with' means to think of an idea or a plan. Example: 'They came up with a clever idea to sell more tires.'",
+        "youtube_video": "https://www.youtube.com/watch?v=FqE43_Qc6Lg",
+        "youtube_title": "▶️ Watch: The Michelin Guide Story"
     },
     {
         "day": 12,
-        "topic": "Giving Constructive Feedback",
-        "curiosity_title": "The Art of Feedback",
-        "curiosity_text": "Giving feedback to a colleague can be challenging, especially if you need to point out a mistake. A highly effective strategy is the 'Situation-Behavior-Impact' framework. Instead of saying 'Your presentation was confusing', you focus on the facts: 'During yesterday's meeting (Situation), you skipped the financial slides (Behavior), which left the clients confused about the budget (Impact).'\n\nThis approach removes personal emotion from the critique and makes the feedback purely objective. It allows the recipient to understand exactly what went wrong without feeling personally attacked. Following up with a constructive suggestion, like 'Perhaps next time we can do a dry run beforehand', helps build a supportive environment.",
-        "grammar_tip": "Collocation: 'Point out' means to direct attention toward something, often a fact, mistake, or detail.",
-        "youtube_video": "https://www.youtube.com/watch?v=wtl5UhiZAAM",
-        "youtube_thumbnail": "https://img.youtube.com/vi/wtl5UhiZAAM/hqdefault.jpg",
-        "youtube_title": "▶️ How to Give Feedback"
+        "topic": "How the Weekend was Invented",
+        "curiosity_title": "Henry Ford's Masterplan",
+        "curiosity_text": "Most of us look forward to Saturday and Sunday, but the 'two-day weekend' wasn't always a normal thing. For a long time, people worked six days a week and only had Sunday off for rest. So, who changed this?\n\nIn 1926, Henry Ford, the famous car maker, decided to give his factory workers both Saturday and Sunday off, without cutting their pay. He didn't just do this because he was a nice boss. He figured out that if people had more free time on the weekends, they would have a reason to buy a car and go on trips with their families. By giving them extra time off, he actually created more customers for his own business. Soon after, other companies followed his lead, and the modern weekend was born.",
+        "grammar_tip": "Phrasal Verb: 'Look forward to' means to feel happy and excited about something that is going to happen. Example: 'I always look forward to the weekend.'",
+        "youtube_video": "https://www.youtube.com/watch?v=Ue-jF0cEiyg",
+        "youtube_title": "▶️ Watch: Why we have weekends"
     },
     {
         "day": 13,
-        "topic": "Running an Effective Daily Stand-Up",
-        "curiosity_title": "Keeping It Brief",
-        "curiosity_text": "Daily stand-up meetings are meant to be quick check-ins, usually lasting no more than 15 minutes. The goal is to align the team, flag any roadblocks, and move on. However, people often get bogged down in technical details or side discussions. A great way to handle this is to gently interrupt and suggest taking the conversation offline. For example, you can say 'Let's take this offline so we don't hold everyone up.' This keeps the meeting on track while ensuring the issue still gets addressed later.\n\nAnother key aspect is setting a clear agenda. Everyone should answer three simple questions: What did you do yesterday? What are you doing today? Are there any blockers? If someone starts rambling, the Scrum Master or team lead should step in to steer the focus back to the core updates.",
-        "grammar_tip": "Phrasal Verb: 'Bog down' means to be prevented from making progress, usually because of too much detail or complexity.",
-        "youtube_video": "https://www.youtube.com/watch?v=0hOvtA5q5YQ",
-        "youtube_thumbnail": "https://img.youtube.com/vi/0hOvtA5q5YQ/maxresdefault.jpg",
-        "youtube_title": "▶️ How to run a Daily Scrum"
+        "topic": "The Secret Behind the Michelin Guide",
+        "curiosity_title": "Tires and Fine Dining",
+        "curiosity_text": "Have you ever wondered why a tire company gives out stars to the best restaurants in the world? It sounds pretty random, right? Back in 1900, the Michelin brothers wanted people to drive their cars more often so they would buy more tires. But there was a problem: people didn't really have many places to drive to.\n\nSo, they came up with a clever idea. They created a free guide book filled with maps, tire repair tips, and most importantly, a list of great hotels and restaurants. The idea was simple: if people want to try out a nice restaurant in another city, they will drive there, wear out their tires, and eventually need to buy new ones from Michelin. What started as a sneaky marketing trick turned into the most respected food guide on the planet.",
+        "grammar_tip": "Expression: 'Come up with' means to think of an idea or a plan. Example: 'They came up with a clever idea to sell more tires.'",
+        "youtube_video": "https://www.youtube.com/watch?v=FqE43_Qc6Lg",
+        "youtube_title": "▶️ Watch: The Michelin Guide Story"
     },
     {
         "day": 14,
-        "topic": "Giving Constructive Feedback",
-        "curiosity_title": "The Art of Feedback",
-        "curiosity_text": "Giving feedback to a colleague can be challenging, especially if you need to point out a mistake. A highly effective strategy is the 'Situation-Behavior-Impact' framework. Instead of saying 'Your presentation was confusing', you focus on the facts: 'During yesterday's meeting (Situation), you skipped the financial slides (Behavior), which left the clients confused about the budget (Impact).'\n\nThis approach removes personal emotion from the critique and makes the feedback purely objective. It allows the recipient to understand exactly what went wrong without feeling personally attacked. Following up with a constructive suggestion, like 'Perhaps next time we can do a dry run beforehand', helps build a supportive environment.",
-        "grammar_tip": "Collocation: 'Point out' means to direct attention toward something, often a fact, mistake, or detail.",
-        "youtube_video": "https://www.youtube.com/watch?v=wtl5UhiZAAM",
-        "youtube_thumbnail": "https://img.youtube.com/vi/wtl5UhiZAAM/hqdefault.jpg",
-        "youtube_title": "▶️ How to Give Feedback"
+        "topic": "How the Weekend was Invented",
+        "curiosity_title": "Henry Ford's Masterplan",
+        "curiosity_text": "Most of us look forward to Saturday and Sunday, but the 'two-day weekend' wasn't always a normal thing. For a long time, people worked six days a week and only had Sunday off for rest. So, who changed this?\n\nIn 1926, Henry Ford, the famous car maker, decided to give his factory workers both Saturday and Sunday off, without cutting their pay. He didn't just do this because he was a nice boss. He figured out that if people had more free time on the weekends, they would have a reason to buy a car and go on trips with their families. By giving them extra time off, he actually created more customers for his own business. Soon after, other companies followed his lead, and the modern weekend was born.",
+        "grammar_tip": "Phrasal Verb: 'Look forward to' means to feel happy and excited about something that is going to happen. Example: 'I always look forward to the weekend.'",
+        "youtube_video": "https://www.youtube.com/watch?v=Ue-jF0cEiyg",
+        "youtube_title": "▶️ Watch: Why we have weekends"
     },
     {
         "day": 15,
-        "topic": "Running an Effective Daily Stand-Up",
-        "curiosity_title": "Keeping It Brief",
-        "curiosity_text": "Daily stand-up meetings are meant to be quick check-ins, usually lasting no more than 15 minutes. The goal is to align the team, flag any roadblocks, and move on. However, people often get bogged down in technical details or side discussions. A great way to handle this is to gently interrupt and suggest taking the conversation offline. For example, you can say 'Let's take this offline so we don't hold everyone up.' This keeps the meeting on track while ensuring the issue still gets addressed later.\n\nAnother key aspect is setting a clear agenda. Everyone should answer three simple questions: What did you do yesterday? What are you doing today? Are there any blockers? If someone starts rambling, the Scrum Master or team lead should step in to steer the focus back to the core updates.",
-        "grammar_tip": "Phrasal Verb: 'Bog down' means to be prevented from making progress, usually because of too much detail or complexity.",
-        "youtube_video": "https://www.youtube.com/watch?v=0hOvtA5q5YQ",
-        "youtube_thumbnail": "https://img.youtube.com/vi/0hOvtA5q5YQ/maxresdefault.jpg",
-        "youtube_title": "▶️ How to run a Daily Scrum"
+        "topic": "The Secret Behind the Michelin Guide",
+        "curiosity_title": "Tires and Fine Dining",
+        "curiosity_text": "Have you ever wondered why a tire company gives out stars to the best restaurants in the world? It sounds pretty random, right? Back in 1900, the Michelin brothers wanted people to drive their cars more often so they would buy more tires. But there was a problem: people didn't really have many places to drive to.\n\nSo, they came up with a clever idea. They created a free guide book filled with maps, tire repair tips, and most importantly, a list of great hotels and restaurants. The idea was simple: if people want to try out a nice restaurant in another city, they will drive there, wear out their tires, and eventually need to buy new ones from Michelin. What started as a sneaky marketing trick turned into the most respected food guide on the planet.",
+        "grammar_tip": "Expression: 'Come up with' means to think of an idea or a plan. Example: 'They came up with a clever idea to sell more tires.'",
+        "youtube_video": "https://www.youtube.com/watch?v=FqE43_Qc6Lg",
+        "youtube_title": "▶️ Watch: The Michelin Guide Story"
     }
 ]

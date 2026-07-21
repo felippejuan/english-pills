@@ -74,6 +74,7 @@ html_content = f"""
     }}
     .grammar-box p {{ margin: 0; color: #1d1d1f; font-size: 16px; }}
     
+    /* Pure CSS YouTube Card */
     .yt-card {{ 
         display: block; 
         text-decoration: none; 
@@ -81,11 +82,24 @@ html_content = f"""
         overflow: hidden; 
         margin-top: 30px; 
         border: 1px solid #d2d2d7; 
+        background: #ffffff;
     }}
-    .yt-img {{ width: 100%; display: block; border-bottom: 1px solid #d2d2d7; }}
-    .yt-info {{ padding: 15px; background: #ffffff; text-align: left; }}
-    .yt-title {{ color: #1d1d1f; font-weight: 600; font-size: 16px; margin: 0; }}
-    .yt-subtitle {{ color: #86868b; font-size: 14px; margin: 5px 0 0 0; }}
+    .yt-hero {{
+        background: #ff0000;
+        padding: 40px 20px;
+        text-align: center;
+    }}
+    .yt-play-btn {{
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        border-left: 24px solid #ffffff;
+    }}
+    .yt-info {{ padding: 20px; text-align: left; }}
+    .yt-title {{ color: #1d1d1f; font-weight: 600; font-size: 18px; margin: 0; }}
+    .yt-subtitle {{ color: #86868b; font-size: 14px; margin: 8px 0 0 0; }}
 
     .cta-container {{ text-align: center; margin-top: 50px; padding-top: 40px; border-top: 1px solid #e5e5ea; }}
     .btn {{ 
@@ -103,7 +117,6 @@ html_content = f"""
 </style>
 </head>
 <body style="background-color: #f5f5f7;">
-    <!-- Wrapper div with inline background to force Gmail to show the off-white color -->
     <div style="background-color: #f5f5f7; width: 100%; padding: 40px 0;">
         <div class="container">
             <div class="pill-badge">Day {current_day}</div>
@@ -120,15 +133,16 @@ html_content = f"""
             </div>
 """
 
-if 'youtube_video' in today_data and 'youtube_thumbnail' in today_data:
-    # Use the actual video title if provided in the DB
-    yt_title = today_data.get('youtube_title', '▶️ Watch Video')
+if 'youtube_video' in today_data:
+    yt_title = today_data.get('youtube_title', 'Watch Video')
     html_content += f"""
             <a href="{today_data['youtube_video']}" class="yt-card" target="_blank">
-                <img src="{today_data['youtube_thumbnail']}" alt="YouTube Video" class="yt-img">
+                <div class="yt-hero">
+                    <div class="yt-play-btn"></div>
+                </div>
                 <div class="yt-info">
                     <p class="yt-title">{yt_title}</p>
-                    <p class="yt-subtitle">Immerse yourself in today's topic (Under 10 mins)</p>
+                    <p class="yt-subtitle">Click to watch on YouTube</p>
                 </div>
             </a>
     """
@@ -137,7 +151,7 @@ html_content += f"""
             <div class="cta-container">
                 <h2 style="margin-top: 0; margin-bottom: 20px;">Unlock Your Fluency</h2>
                 <a href="https://felippejuan.github.io/english-pills/?day={current_day}" class="btn">Open Fluency Coach</a>
-                <p class="cta-hint">Calibrate your vocabulary and train your pronunciation.</p>
+                <p class="cta-hint">Highlight an expression and train your pronunciation.</p>
             </div>
 
             <div class="footer">

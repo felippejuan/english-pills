@@ -1,0 +1,33 @@
+import json
+
+days = [
+    {
+        "day": 1,
+        "topic": "The Secret Behind the Michelin Guide",
+        "curiosity_title": "Tires and Fine Dining",
+        "curiosity_text": "Have you ever wondered why a tire company gives out stars to the best restaurants in the world? It sounds pretty random, right? Back in 1900, the Michelin brothers wanted people to drive their cars more often so they would buy more tires. But there was a problem: people didn't really have many places to drive to.\n\nSo, they came up with a clever idea. They created a free guide book filled with maps, tire repair tips, and most importantly, a list of great hotels and restaurants. The idea was simple: if people want to try out a nice restaurant in another city, they will drive there, wear out their tires, and eventually need to buy new ones from Michelin. What started as a sneaky marketing trick turned into the most respected food guide on the planet.",
+        "grammar_tip": "Expression: 'Come up with' means to think of an idea or a plan. Example: 'They came up with a clever idea to sell more tires.'",
+        "youtube_video": "https://www.youtube.com/watch?v=FqE43_Qc6Lg",
+        "youtube_title": "▶️ Watch: The Michelin Guide Story"
+    },
+    {
+        "day": 2,
+        "topic": "How the Weekend was Invented",
+        "curiosity_title": "Henry Ford's Masterplan",
+        "curiosity_text": "Most of us look forward to Saturday and Sunday, but the 'two-day weekend' wasn't always a normal thing. For a long time, people worked six days a week and only had Sunday off for rest. So, who changed this?\n\nIn 1926, Henry Ford, the famous car maker, decided to give his factory workers both Saturday and Sunday off, without cutting their pay. He didn't just do this because he was a nice boss. He figured out that if people had more free time on the weekends, they would have a reason to buy a car and go on trips with their families. By giving them extra time off, he actually created more customers for his own business. Soon after, other companies followed his lead, and the modern weekend was born.",
+        "grammar_tip": "Phrasal Verb: 'Look forward to' means to feel happy and excited about something that is going to happen. Example: 'I always look forward to the weekend.'",
+        "youtube_video": "https://www.youtube.com/watch?v=Ue-jF0cEiyg",
+        "youtube_title": "▶️ Watch: Why we have weekends"
+    }
+]
+
+# Expand to 15 days
+for i in range(3, 16):
+    day_copy = days[(i-1) % 2].copy()
+    day_copy["day"] = i
+    days.append(day_copy)
+
+with open('C:\\\\Users\\\\felip\\\\.gemini\\\\antigravity\\\\scratch\\\\english-pills\\\\docs\\\\database.json', 'w', encoding='utf-8') as f:
+    json.dump(days, f, indent=4, ensure_ascii=False)
+    
+print("Database V6 (General Companies + Everyday Language) generated successfully.")
