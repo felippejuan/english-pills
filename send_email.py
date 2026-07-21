@@ -31,95 +31,90 @@ if not today_data:
     print("Error: Day data not found!")
     exit(1)
 
-# Active Recall Data (7 days ago)
-recall_day = current_day - 7
-if recall_day < 1:
-    recall_day = 15 + recall_day
-
-recall_data = next((item for item in database if item["day"] == recall_day), None)
-
-# Generate Audio
+# Generate Audio for Target Phrase
 audio_path = "audio.mp3"
-tts = gTTS(text=today_data["target_phrase"], lang='en', slow=False)
+tts = gTTS(text=today_data["target_phrase"], lang='en', tld='co.uk', slow=False) # British Accent
 tts.save(audio_path)
 
-# Build HTML
-glossary_html = ""
-if "vocabulary_glossary" in today_data:
-    glossary_html = "<ul>"
-    for word, meaning in today_data["vocabulary_glossary"].items():
-        glossary_html += f"<li><strong>{word}:</strong> {meaning}</li>"
-    glossary_html += "</ul>"
+# Build Pronunciation Tips HTML
+pronunciation_html = ""
+if "pronunciation_tips" in today_data:
+    for word, tip in today_data["pronunciation_tips"].items():
+        pronunciation_html += f"<li><strong>{word}</strong> <span style='color: #86868b; font-size: 13px;'>— pronounce it like <em>{tip}</em></span></li>"
 
+# Build HTML (Apple-style minimalist)
 html_content = f"""
 <!DOCTYPE html>
 <html>
 <head>
 <style>
-    body {{ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; margin: 0; padding: 20px; }}
-    .container {{ background: #ffffff; border-radius: 12px; padding: 30px; max-width: 600px; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 5px solid #3b82f6; }}
-    h1 {{ color: #1e293b; font-size: 24px; }}
-    h2 {{ color: #3b82f6; font-size: 18px; margin-top: 25px; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; }}
-    .highlight {{ background: #eff6ff; padding: 15px; border-left: 4px solid #3b82f6; border-radius: 4px; margin: 15px 0; line-height: 1.6; }}
-    .cta-box {{ background: #fffbeb; padding: 15px; border-left: 4px solid #f59e0b; border-radius: 4px; margin: 15px 0; font-weight: bold; color: #b45309; }}
-    .phrase-box {{ background: #1e293b; color: white; padding: 20px; text-align: center; border-radius: 8px; font-size: 20px; font-weight: bold; margin: 25px 0; }}
-    .btn {{ display: inline-block; background: #3b82f6; color: white; text-decoration: none; padding: 12px 25px; border-radius: 50px; font-weight: bold; margin-top: 10px; }}
-    .btn:hover {{ background: #2563eb; }}
-    .footer {{ margin-top: 30px; font-size: 12px; color: #94a3b8; text-align: center; }}
+    body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f5f5f7; color: #1d1d1f; margin: 0; padding: 40px 20px; line-height: 1.5; }}
+    .container {{ background: #ffffff; border-radius: 18px; padding: 40px; max-width: 640px; margin: 0 auto; box-shadow: 0 4px 24px rgba(0,0,0,0.04); }}
+    .pill-badge {{ display: inline-block; background: #0071e3; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 20px; }}
+    h1 {{ color: #1d1d1f; font-size: 28px; font-weight: 700; margin: 0 0 10px 0; letter-spacing: -0.5px; }}
+    h2 {{ color: #1d1d1f; font-size: 20px; font-weight: 600; margin-top: 35px; margin-bottom: 15px; letter-spacing: -0.3px; }}
+    p {{ font-size: 16px; color: #515154; margin-bottom: 16px; line-height: 1.6; }}
+    .curiosity-box {{ padding: 0; margin-bottom: 30px; }}
+    .grammar-box {{ background: #fbfbfd; border: 1px solid #d2d2d7; border-radius: 12px; padding: 20px; margin-top: 20px; }}
+    .grammar-box p {{ margin: 0; color: #1d1d1f; font-size: 15px; }}
+    .pronunciation-list {{ list-style: none; padding: 0; margin: 0; }}
+    .pronunciation-list li {{ padding: 8px 0; border-bottom: 1px solid #e5e5ea; font-size: 15px; }}
+    .pronunciation-list li:last-child {{ border-bottom: none; }}
+    
+    .video-card {{ display: block; text-decoration: none; background: #fbfbfd; border-radius: 12px; padding: 20px; text-align: center; margin-top: 30px; border: 1px solid #d2d2d7; transition: all 0.3s ease; }}
+    .video-card:hover {{ background: #f5f5f7; }}
+    .video-icon {{ font-size: 24px; margin-bottom: 10px; }}
+    .video-title {{ color: #1d1d1f; font-weight: 600; font-size: 16px; margin: 0; }}
+    .video-subtitle {{ color: #86868b; font-size: 13px; margin: 5px 0 0 0; }}
+
+    .cta-container {{ text-align: center; margin-top: 45px; padding-top: 35px; border-top: 1px solid #e5e5ea; }}
+    .btn {{ display: inline-block; background: #0071e3; color: white; text-decoration: none; padding: 14px 28px; border-radius: 25px; font-weight: 600; font-size: 16px; transition: background 0.3s ease; }}
+    .btn:hover {{ background: #0077ed; }}
+    .cta-hint {{ font-size: 13px; color: #86868b; margin-top: 15px; }}
+    
+    .footer {{ margin-top: 40px; font-size: 12px; color: #86868b; text-align: center; }}
 </style>
 </head>
 <body>
     <div class="container">
-        <h1>💊 English Pill - Day {current_day}</h1>
-        <p><strong>Topic:</strong> {today_data['topic']}</p>
+        <div class="pill-badge">Day {current_day}</div>
+        <h1>{today_data['topic']}</h1>
         
-        <h2>🧠 Curiosity of the Day: {today_data['fact_title']}</h2>
-        <div class="highlight">
-            <p>{today_data['fact_text'].replace(chr(10), '<br>')}</p>
+        <h2>{today_data['curiosity_title']}</h2>
+        <div class="curiosity-box">
+            <p>{today_data['curiosity_text'].replace(chr(10), '<br>')}</p>
         </div>
 
-        <h2>📖 Vocabulary Glossary</h2>
-        <div class="highlight">
-            {glossary_html}
-        </div>
+        <h2>🗣️ Pronunciation Tips</h2>
+        <p style="font-size: 14px; color: #86868b; margin-top: -10px;">Listen to the attached audio, and check out these tips for the hard words:</p>
+        <ul class="pronunciation-list">
+            {pronunciation_html}
+        </ul>
 
-        <h2>💬 Phrasal Verb: {today_data['phrasal_verb']}</h2>
-        <p><strong>Meaning:</strong> {today_data['phrasal_verb_meaning']}</p>
-        <p><strong>Example:</strong> {today_data['phrasal_verb_example']}</p>
-
-        <h2>💡 Grammar Tip</h2>
-        <p>{today_data['grammar_tip']}</p>
-
-        <div class="cta-box">
-            <p>🎯 <strong>Action Required:</strong> {today_data.get('grammar_cta', 'Reply to this email using the grammar rule!')}</p>
-            <p style="font-size: 12px; margin-top: 5px; color: #d97706;">(Just hit 'Reply', type your answer, and our AI Tutor will respond to you shortly!)</p>
-        </div>
-
-        <h2>🗣️ Target Phrase (Listen & Repeat)</h2>
-        <p>Listen to the attached audio file and try to repeat the phrase below:</p>
-        <div class="phrase-box">
-            {today_data['target_phrase']}
-        </div>
-
-        <div style="text-align: center; margin-top: 30px;">
-            <p>Ready to test your pronunciation?</p>
-            <a href="https://felippejuan.github.io/english-pills/?day={current_day}" class="btn">Open Pronunciation App</a>
+        <h2>💡 Grammar Focus</h2>
+        <div class="grammar-box">
+            <p>{today_data['grammar_tip']}</p>
         </div>
 """
 
-if recall_data:
+if 'youtube_video' in today_data:
     html_content += f"""
-        <h2>⏳ Active Recall Challenge</h2>
-        <p>Do you remember the Phrasal Verb we learned 7 days ago?</p>
-        <div class="highlight">
-            <p>What is the meaning of <strong>{recall_data['phrasal_verb']}</strong>?</p>
-            <p style="font-size: 10px; color: transparent; text-shadow: 0 0 8px rgba(0,0,0,0.5);">Answer: {recall_data['phrasal_verb_meaning']} - Select this blurred text to reveal the answer.</p>
-        </div>
+        <a href="{today_data['youtube_video']}" class="video-card" target="_blank">
+            <div class="video-icon">▶️</div>
+            <p class="video-title">Watch the Complementary Video</p>
+            <p class="video-subtitle">Boost your listening skills (under 10 mins)</p>
+        </a>
     """
 
-html_content += """
+html_content += f"""
+        <div class="cta-container">
+            <h2 style="margin-top: 0; margin-bottom: 20px;">Ready for your Interactive Workout?</h2>
+            <a href="https://felippejuan.github.io/english-pills/?day={current_day}" class="btn">Open Web App</a>
+            <p class="cta-hint">The Web App will sync with your cloud progress, generate AI exercises,<br>and evaluate your pronunciation.</p>
+        </div>
+
         <div class="footer">
-            <p>Automated by your English Pills System.</p>
+            <p>Designed for you. Powered by Gemini AI & GitHub Actions.</p>
         </div>
     </div>
 </body>
@@ -128,7 +123,7 @@ html_content += """
 
 # Send Email
 msg = EmailMessage()
-msg['Subject'] = f"Re: 💊 Your English Pill - Day {current_day}"
+msg['Subject'] = f"💊 Your English Pill - Day {current_day}"
 msg['From'] = SMTP_USER
 msg['To'] = RECIPIENT_EMAIL
 msg.set_content("Please enable HTML to view this email.")

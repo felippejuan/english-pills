@@ -3,12 +3,10 @@ name: English Pills Automation
 on:
   schedule:
     - cron: '30 10 * * *' # 10:30 UTC (07:30 BRT) -> Sends daily pill
-    - cron: '0 * * * *'   # Every hour -> Checks for replies to answer
   workflow_dispatch: # Allows manual trigger
 
 jobs:
   send-pill:
-    if: github.event.schedule == '30 10 * * *' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -30,27 +28,3 @@ jobs:
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
         run: python send_email.py
-
-  check-replies:
-    if: github.event.schedule == '0 * * * *' || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Run Reply Agent
-        env:
-          SMTP_USER: ${{ secrets.SMTP_USER }}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python reply_agent.py
