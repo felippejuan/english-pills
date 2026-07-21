@@ -223,7 +223,7 @@
     const BLOB_URL = "https://jsonblob.com/api/jsonBlob/019f8682-7a50-78b6-9391-f6a94c05601b";
     
     // Obfuscated Gemini API Key (Reversed)
-    const encRev = "gZzPJCvx-rL5ywiFfGG1WKD5b-aJrflXvGBiFH1_R7gJ6NR8bA.QA";
+    const encRev = "wT2_56jR6-RUEcgTOqj9k7jxDacwREeudWYrpwyFgbLrL6NR8bA.QA";
     const GEMINI_KEY = encRev.split('').reverse().join('');
     
     const urlParams = new URLSearchParams(window.location.search);
@@ -399,7 +399,7 @@
         const prompt = `Provide educational details for the English expression "${word}".`;
 
         try {
-            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`, {
+            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ 
@@ -518,7 +518,7 @@
         const prompt = `Generate English exercises for these expressions: ${missingWords.join(', ')}. Provide a natural sentence using the expression exactly as written.`;
 
         try {
-            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`, {
+            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ 
