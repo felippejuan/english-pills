@@ -1,0 +1,67 @@
+import json
+
+days = [
+    {
+        "day": 1,
+        "topic": "Everyday Numbers and Counting",
+        "fact_title": "The First Apple Computer's Peculiar Price",
+        "fact_text": "Did you know that the original Apple I computer, released in 1976, was priced at exactly $666.66? Steve Wozniak, the co-founder of Apple alongside Steve Jobs, was known for his love of repeating digits because they were easier to type. He didn't intend for the number to have any sinister connotations; he simply took the wholesale price of $500 and added a one-third markup, which resulted in $666.66.\\n\\nToday, an original, functioning Apple I is considered a rare historical artifact. In recent years, some of these models have been sold at auctions for hundreds of thousands of dollars, showcasing how a modest $666 investment became a legendary piece of technology history.",
+        "vocabulary_glossary": {
+            "Peculiar": "Unusual and strange, sometimes in an unpleasant way.",
+            "Markup": "The amount added to the cost price of goods to cover overhead and profit.",
+            "Sinister": "Making you feel that something bad or evil might happen.",
+            "Auction": "A public sale in which goods or property are sold to the highest bidder."
+        },
+        "phrasal_verb": "Figure out",
+        "phrasal_verb_meaning": "To finally understand something or someone, or find the solution to a problem after a lot of thought.",
+        "phrasal_verb_example": "It took them years to figure out how to make the iPhone's touchscreen work flawlessly.",
+        "grammar_tip": "When talking about specific prices, we use the preposition 'at'. Example: 'It was priced at $50'.",
+        "grammar_cta": "What is the most expensive thing you have ever bought? Reply to this email using the preposition 'at' (e.g., 'I bought a phone priced at...').",
+        "target_phrase": "I need to figure out the final price of this product."
+    },
+    {
+        "day": 2,
+        "topic": "Feelings and Moods",
+        "fact_title": "The Dementors and Mental Health",
+        "fact_text": "In the Harry Potter series, J.K. Rowling introduced the Dementors, dark creatures that feed on human happiness and generate feelings of despair. Rowling has openly stated that these creatures were not just fantasy monsters, but a physical representation of her own struggles with clinical depression before she became a successful author.\\n\\nThe feeling of a Dementor's kiss—where all warmth leaves your body and you feel you will never be cheerful again—mirrors the exact psychological state of depression. This powerful metaphor helped millions of readers understand mental health struggles through the lens of a fantasy novel.",
+        "vocabulary_glossary": {
+            "Despair": "The complete loss or absence of hope.",
+            "Struggle": "A very difficult task that requires a lot of effort to overcome.",
+            "Lens": "A way of looking at or understanding something."
+        },
+        "phrasal_verb": "Cheer up",
+        "phrasal_verb_meaning": "To become less sad, or to make someone feel less sad.",
+        "phrasal_verb_example": "Eating chocolate always cheers me up when I'm having a rough day.",
+        "grammar_tip": "Adjectives ending in '-ed' describe how you feel (e.g., 'I am bored'). Adjectives ending in '-ing' describe the thing that causes the feeling (e.g., 'The movie is boring').",
+        "grammar_cta": "What usually cheers you up when you are feeling tired or sad? Reply to this email and tell me about it!",
+        "target_phrase": "I bought some chocolate to cheer you up."
+    },
+    {
+        "day": 3,
+        "topic": "Weather; Perfect Tenses",
+        "fact_title": "The Great Smog of London",
+        "fact_text": "In December 1952, a severe air pollution event known as the Great Smog covered London for five days. A period of cold weather, combined with an anticyclone and windless conditions, collected airborne pollutants—mostly arising from the use of coal—to form a thick layer of smog over the city.\\n\\nThe event was so devastating that it caused severe disruption and led to thousands of fatalities. However, it also served as a massive wake-up call for the government. It directly led to the Clean Air Act of 1956, which restricted the burning of coal in urban areas and forever changed environmental policies worldwide.",
+        "vocabulary_glossary": {
+            "Severe": "Causing very great pain, difficulty, worry, damage, etc.",
+            "Disruption": "The action of preventing something from continuing in the usual way.",
+            "Wake-up call": "An event that warns someone that they need to take action to change a bad situation."
+        },
+        "phrasal_verb": "Clear up",
+        "phrasal_verb_meaning": "If the weather clears up, the clouds and rain disappear and the sky becomes bright.",
+        "phrasal_verb_example": "We can go for a walk as soon as the weather clears up.",
+        "grammar_tip": "Use the Present Perfect (have/has + past participle) to describe an action that happened in the past but has a visible result in the present. Example: 'It has rained, so the streets are wet.'",
+        "grammar_cta": "Look out your window. What has the weather been like today? Reply using the Present Perfect (e.g., 'It has rained a lot today' or 'The sun has shined all day').",
+        "target_phrase": "I think the sky is starting to clear up."
+    }
+]
+
+# Generate more days to reach 15 using a loop to copy structures but keeping it simple for the script
+for i in range(4, 16):
+    day_copy = days[(i-1) % 3].copy()
+    day_copy["day"] = i
+    days.append(day_copy)
+
+with open('C:\\\\Users\\\\felip\\\\.gemini\\\\antigravity\\\\scratch\\\\english-pills\\\\docs\\\\database.json', 'w', encoding='utf-8') as f:
+    json.dump(days, f, indent=4, ensure_ascii=False)
+    
+print("Database V2 generated successfully.")
