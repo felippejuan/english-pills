@@ -59,35 +59,26 @@
             font-size: 18px; 
             line-height: 1.8; 
             color: #333; 
-            user-select: text; 
-            -webkit-user-select: text;
         }
-        ::selection { background: #e8f0fe; color: #1a73e8; }
         
-        #floating-btn {
-            position: absolute;
-            display: none;
-            background: #1d1d1f;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
+        /* The magical pre-highlighted expressions */
+        .highlightable {
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            padding: 2px 6px;
+            border-radius: 6px;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            z-index: 100;
-            transform: translate(-50%, -120%);
+            font-weight: 500;
+            transition: all 0.2s;
+            border-bottom: 2px solid transparent;
         }
-        #floating-btn::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-width: 6px 6px 0;
-            border-style: solid;
-            border-color: #1d1d1f transparent transparent transparent;
+        .highlightable:hover {
+            background-color: #d2e3fc;
+            border-bottom: 2px solid #1a73e8;
+        }
+        .highlightable.active {
+            background-color: #1a73e8;
+            color: white;
         }
 
         .selected-list { margin-top: 25px; display: flex; flex-wrap: wrap; gap: 10px; }
@@ -169,15 +160,13 @@
             <h2 style="margin:0;">Reading & Calibration</h2>
             <button class="btn-icon" id="read-aloud-btn">🔊 Listen (UK)</button>
         </div>
-        <p style="color: var(--secondary-text); margin-bottom: 25px;">Highlight any word or expression you'd like to learn.</p>
+        <p style="color: var(--secondary-text); margin-bottom: 25px;">Click on the highlighted expressions to learn them.</p>
         
         <div id="text-content"></div>
-        <button id="floating-btn">💡 Learn Expression</button>
         
         <div class="selected-list" id="selected-list"></div>
         
         <div id="word-tooltip">
-            <div id="tt-loader" class="loader" style="display: block; margin: 20px auto;"></div>
             <div id="tt-content" class="hidden">
                 <p class="tt-word" id="tt-word">Word</p>
                 <p class="tt-phonetic" id="tt-phonetic">/pronunciation/</p>
@@ -186,7 +175,7 @@
             </div>
         </div>
         
-        <button class="btn" id="start-exercises-btn" style="margin-top: 35px;">Generate AI Exercises</button>
+        <button class="btn" id="start-exercises-btn" style="margin-top: 35px;">Start AI Training</button>
     </div>
 
     <div class="card hidden" id="exercise-card">
@@ -222,31 +211,28 @@
 <script>
     const BLOB_URL = "https://jsonblob.com/api/jsonBlob/019f8682-7a50-78b6-9391-f6a94c05601b";
     
-    // Reverse string obfuscation. Failsafe in all browsers, zero encoding issues.
-    const encRev = "gZzPJCvx-rL5ywiFfGG1WKD5b-aJrflXvGBiFH1_R7gJ6NR8bA.QA";
-    const GEMINI_KEY = encRev.split('').reverse().join('');
-
     const urlParams = new URLSearchParams(window.location.search);
     const today = parseInt(urlParams.get('day')) || 1;
     
     let cloudState = { progress: {}, schedule: {} };
     let selectedWords = new Set();
-    let currentExercises = [];
+    
+    // Data populated directly from the local JSON database (No API required!)
+    let dayData = null;
+    let selectedExercises = [];
+    
     let currentExIndex = 0;
     let expectedWord = "";
     let expectedSentence = "";
     let spokenCorrectly = false;
-    let tempSelection = "";
     
     const mainLoader = document.getElementById('main-loader');
     const calibCard = document.getElementById('calibration-card');
     const textContent = document.getElementById('text-content');
     const startBtn = document.getElementById('start-exercises-btn');
     const readBtn = document.getElementById('read-aloud-btn');
-    const floatingBtn = document.getElementById('floating-btn');
     const selectedList = document.getElementById('selected-list');
     const tooltip = document.getElementById('word-tooltip');
-    const ttLoader = document.getElementById('tt-loader');
     const ttContent = document.getElementById('tt-content');
     
     const exCard = document.getElementById('exercise-card');
@@ -262,7 +248,6 @@
     const doneCard = document.getElementById('done-card');
 
     let fullTextToRead = "";
-    let tooltipCache = {};
 
     async function init() {
         document.getElementById('day-subtitle').innerText = `Day ${today} • British English`;
@@ -270,16 +255,36 @@
         try {
             const res1 = await fetch('database.json');
             const dbData = await res1.json();
-            const todayData = dbData.find(d => d.day === today);
+            dayData = dbData.find(d => d.day === today);
             
             const res2 = await fetch(BLOB_URL);
             cloudState = await res2.json();
             if(!cloudState.schedule) cloudState.schedule = {};
             
-            if (todayData) {
-                fullTextToRead = todayData.curiosity_text;
-                textContent.innerHTML = fullTextToRead.replace(/\\n/g, '<br>');
+            if (dayData) {
+                // Remove HTML tags for TTS reading
+                let tempDiv = document.createElement("div");
+                tempDiv.innerHTML = dayData.curiosity_text.replace(/<[^>]*>?/gm, '');
+                fullTextToRead = tempDiv.textContent || tempDiv.innerText || "";
                 
+                // Render text with pre-highlighted spans
+                textContent.innerHTML = dayData.curiosity_text.replace(/\\n/g, '<br>');
+                
+                // Add click events to pre-highlighted spans
+                document.querySelectorAll('.highlightable').forEach(el => {
+                    el.addEventListener('click', (e) => {
+                        document.querySelectorAll('.highlightable').forEach(h => h.classList.remove('active'));
+                        e.target.classList.add('active');
+                        
+                        const expId = e.target.getAttribute('data-id');
+                        const data = dayData.tooltips[expId];
+                        if (data) {
+                            addChip(data.word);
+                            showTooltip(data);
+                        }
+                    });
+                });
+
                 const dueWords = getDueWords();
                 dueWords.forEach(w => addChip(w));
                 
@@ -291,37 +296,6 @@
             alert("Error loading content.");
         }
     }
-
-    document.addEventListener('selectionchange', () => {
-        const selection = window.getSelection();
-        const text = selection.toString().trim();
-        
-        if (text.length > 0 && text.length < 50 && selection.anchorNode && textContent.contains(selection.anchorNode)) {
-            const range = selection.getRangeAt(0);
-            const rect = range.getBoundingClientRect();
-            
-            floatingBtn.style.display = 'block';
-            floatingBtn.style.left = `${rect.left + rect.width / 2 + window.scrollX}px`;
-            floatingBtn.style.top = `${rect.top + window.scrollY - 10}px`;
-            tempSelection = text;
-        } else {
-            setTimeout(() => {
-                if(window.getSelection().toString().trim() === "") {
-                    floatingBtn.style.display = 'none';
-                }
-            }, 100);
-        }
-    });
-
-    floatingBtn.addEventListener('click', () => {
-        if (tempSelection) {
-            const exp = tempSelection.toLowerCase();
-            addChip(exp);
-            showTooltip(exp);
-            floatingBtn.style.display = 'none';
-            window.getSelection().removeAllRanges();
-        }
-    });
 
     function addChip(word) {
         if(selectedWords.has(word)) return;
@@ -351,58 +325,9 @@
         }
     });
 
-    // Uses responseMimeType to enforce JSON output directly from Gemini
-    async function showTooltip(word) {
+    // Instantly renders pre-generated tooltip from the loaded JSON
+    function showTooltip(data) {
         tooltip.style.display = 'block';
-        ttContent.classList.add('hidden');
-        ttLoader.style.display = 'block';
-        
-        if (tooltipCache[word]) {
-            renderTooltip(tooltipCache[word]);
-            return;
-        }
-
-        const schema = {
-            "type": "object",
-            "properties": {
-                "word": {"type": "string"},
-                "phonetic_br": {"type": "string", "description": "brasilizada phonetic spelling"},
-                "definition": {"type": "string"},
-                "examples": {
-                    "type": "array",
-                    "items": {"type": "string"}
-                }
-            }
-        };
-
-        const prompt = `Provide educational details for the English expression "${word}".`;
-
-        try {
-            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ 
-                    contents: [{parts:[{text: prompt}]}],
-                    generationConfig: {
-                        responseMimeType: "application/json",
-                        responseSchema: schema
-                    }
-                })
-            });
-            const data = await res.json();
-            if(data.error) throw new Error(data.error.message);
-            
-            const resObj = JSON.parse(data.candidates[0].content.parts[0].text);
-            tooltipCache[word] = resObj;
-            renderTooltip(resObj);
-        } catch(e) {
-            console.error(e);
-            alert("Failed to load details. Gemini API Error: " + e.message);
-            tooltip.style.display = 'none';
-        }
-    }
-
-    function renderTooltip(data) {
         document.getElementById('tt-word').innerText = data.word;
         document.getElementById('tt-phonetic').innerText = `🔊 Pronuncia-se: ${data.phonetic_br}`;
         document.getElementById('tt-def').innerText = data.definition;
@@ -413,7 +338,6 @@
         }
         document.getElementById('tt-examples').innerHTML = exHtml;
         
-        ttLoader.style.display = 'none';
         ttContent.classList.remove('hidden');
     }
 
@@ -444,63 +368,43 @@
 
     startBtn.addEventListener('click', async () => {
         if (selectedWords.size === 0) {
-            alert("Highlight at least one expression to start training.");
+            alert("Click on at least one highlighted expression to start training.");
             return;
         }
         
-        startBtn.innerHTML = '<div class="loader" style="display:inline-block; border-color:#fff; border-top-color:transparent; width:16px; height:16px;"></div> Generating AI Plan...';
+        startBtn.innerHTML = '<div class="loader" style="display:inline-block; border-color:#fff; border-top-color:transparent; width:16px; height:16px;"></div> Loading Exercises...';
         startBtn.disabled = true;
         
         await updateCloudState();
-        await generateExercises();
-    });
-
-    async function generateExercises() {
+        
+        // Grab the pre-generated exercises matching the selected words
+        selectedExercises = [];
         const wordsList = Array.from(selectedWords);
         
-        const schema = {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "word": {"type": "string"},
-                    "difficulty": {"type": "string", "enum": ["easy", "medium", "hard"]},
-                    "sentence": {"type": "string"}
+        if(dayData.exercises) {
+            dayData.exercises.forEach(ex => {
+                if (wordsList.includes(ex.word)) {
+                    selectedExercises.push(ex);
                 }
-            }
-        };
-
-        const prompt = `Generate English exercises for these expressions: ${wordsList.join(', ')}. Provide a natural sentence using the expression exactly as written.`;
-
-        try {
-            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ 
-                    contents: [{parts:[{text: prompt}]}],
-                    generationConfig: {
-                        responseMimeType: "application/json",
-                        responseSchema: schema
-                    }
-                })
             });
-            const data = await res.json();
-            
-            if(data.error) throw new Error(data.error.message);
-            
-            currentExercises = JSON.parse(data.candidates[0].content.parts[0].text);
-            
-            calibCard.classList.add('hidden');
-            exCard.classList.remove('hidden');
-            showExercise();
-            
-        } catch(e) {
-            console.error("Exercise generation failed: ", e);
-            alert("API Error: " + e.message);
-            startBtn.innerHTML = 'Generate AI Exercises';
-            startBtn.disabled = false;
         }
-    }
+        
+        // If they select a word that isn't in today's DB (e.g. from Due Words of a past day), 
+        // we create a fallback easy exercise for it.
+        wordsList.forEach(w => {
+            if(!selectedExercises.find(ex => ex.word === w)) {
+                selectedExercises.push({
+                    word: w,
+                    difficulty: "easy",
+                    sentence: `I need to practice the expression: ${w}.`
+                });
+            }
+        });
+
+        calibCard.classList.add('hidden');
+        exCard.classList.remove('hidden');
+        showExercise();
+    });
 
     function shuffle(array) {
         let currentIndex = array.length, randomIndex;
@@ -513,13 +417,13 @@
     }
 
     function showExercise() {
-        if (currentExIndex >= currentExercises.length) {
+        if (currentExIndex >= selectedExercises.length) {
             exCard.classList.add('hidden');
             doneCard.classList.remove('hidden');
             return;
         }
         
-        const ex = currentExercises[currentExIndex];
+        const ex = selectedExercises[currentExIndex];
         expectedWord = ex.word.toLowerCase();
         expectedSentence = ex.sentence;
         
@@ -579,7 +483,7 @@
 
         recognition.onresult = function(event) {
             const transcript = event.results[0][0].transcript.toLowerCase();
-            const ex = currentExercises[currentExIndex];
+            const ex = selectedExercises[currentExIndex];
             
             let passed = false;
             if (ex.difficulty === 'hard') {
@@ -630,7 +534,7 @@
     }
 
     submitBtn.addEventListener('click', () => {
-        const ex = currentExercises[currentExIndex];
+        const ex = selectedExercises[currentExIndex];
         const val = inputEl.value.trim().toLowerCase();
         
         let isCorrect = false;
