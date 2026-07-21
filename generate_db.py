@@ -1,0 +1,205 @@
+import json
+import os
+
+days = [
+    {
+        "day": 1,
+        "topic": "Everyday Numbers and Counting",
+        "fact_title": "The First Apple Computer",
+        "fact_text": "Did you know that the Apple I, released in 1976, was priced at $666.66? Steve Wozniak liked repeating digits.",
+        "fact_translation": "Você sabia que o Apple I, lançado em 1976, custava $666,66? Steve Wozniak gostava de dígitos repetidos.",
+        "phrasal_verb": "Figure out",
+        "phrasal_verb_meaning": "To understand or solve something.",
+        "phrasal_verb_example": "I need to figure out how much this will cost.",
+        "grammar_tip": "When talking about specific prices, use 'at'. Example: 'Priced at $50'.",
+        "target_phrase": "I need to figure out the final price of this product.",
+        "target_phrase_translation": "Eu preciso descobrir o preço final deste produto."
+    },
+    {
+        "day": 2,
+        "topic": "Everyday Numbers and Counting",
+        "fact_title": "McDonald's First Menu",
+        "fact_text": "In 1940, the original McDonald's menu only had nine items. A hamburger cost just 15 cents!",
+        "fact_translation": "Em 1940, o menu original do McDonald's tinha apenas nove itens. Um hambúrguer custava apenas 15 centavos!",
+        "phrasal_verb": "Add up",
+        "phrasal_verb_meaning": "To calculate the total of two or more numbers.",
+        "phrasal_verb_example": "If you add up the cost of the burgers, it's very cheap.",
+        "grammar_tip": "Use 'cost' (without 's') in the past tense, as it is an irregular verb (cost, cost, cost).",
+        "target_phrase": "Could you add up the total cost of our meal?",
+        "target_phrase_translation": "Você poderia somar o custo total da nossa refeição?"
+    },
+    {
+        "day": 3,
+        "topic": "Feelings and Moods",
+        "fact_title": "The Dementors in Harry Potter",
+        "fact_text": "J.K. Rowling created the Dementors as a physical representation of her own experiences with clinical depression.",
+        "fact_translation": "J.K. Rowling criou os Dementadores como uma representação física de suas próprias experiências com a depressão clínica.",
+        "phrasal_verb": "Cheer up",
+        "phrasal_verb_meaning": "To become happier or to make someone happier.",
+        "phrasal_verb_example": "Eating chocolate always cheers me up when I'm sad.",
+        "grammar_tip": "For feelings, we often use adjectives ending in '-ed' for how we feel (bored, tired) and '-ing' for the cause (boring, tiring).",
+        "target_phrase": "I bought some chocolate to cheer you up.",
+        "target_phrase_translation": "Eu comprei um pouco de chocolate para te animar."
+    },
+    {
+        "day": 4,
+        "topic": "Feelings and Moods; Tense Usage",
+        "fact_title": "The Pixar Brain Trust",
+        "fact_text": "Pixar movies always evoke strong emotions. Their 'Brain Trust' process involves directors giving brutally honest feedback to improve the story.",
+        "fact_translation": "Os filmes da Pixar sempre evocam emoções fortes. O processo 'Brain Trust' deles envolve diretores dando feedback brutalmente honesto para melhorar a história.",
+        "phrasal_verb": "Calm down",
+        "phrasal_verb_meaning": "To stop feeling upset, angry, or excited, or to stop someone else from feeling this way.",
+        "phrasal_verb_example": "You need to calm down before making any big decisions.",
+        "grammar_tip": "Use the Present Continuous to talk about temporary moods: 'I am feeling stressed today.'",
+        "target_phrase": "Please calm down and tell me what happened.",
+        "target_phrase_translation": "Por favor, acalme-se e me diga o que aconteceu."
+    },
+    {
+        "day": 5,
+        "topic": "Social Interactions and Small Talk",
+        "fact_title": "The Origin of Bluetooth",
+        "fact_text": "Bluetooth is named after a 10th-century Viking king, Harald Bluetooth, who united Danish tribes, much like the technology unites devices.",
+        "fact_translation": "O Bluetooth leva o nome de um rei viking do século 10, Harald Bluetooth, que uniu as tribos dinamarquesas, assim como a tecnologia une dispositivos.",
+        "phrasal_verb": "Catch up",
+        "phrasal_verb_meaning": "To talk to someone you have not seen for a while and find out what they have been doing.",
+        "phrasal_verb_example": "It was great to catch up with you over coffee.",
+        "grammar_tip": "When making small talk, use open-ended questions like 'How have you been?' instead of 'Are you fine?'.",
+        "target_phrase": "We should definitely catch up soon.",
+        "target_phrase_translation": "Nós definitivamente deveríamos colocar o papo em dia em breve."
+    },
+    {
+        "day": 6,
+        "topic": "Social Interactions",
+        "fact_title": "The First Email",
+        "fact_text": "Ray Tomlinson sent the first email in 1971. He doesn't remember exactly what it said, probably something like 'QWERTYUIOP'.",
+        "fact_translation": "Ray Tomlinson enviou o primeiro e-mail em 1971. Ele não lembra exatamente o que dizia, provavelmente algo como 'QWERTYUIOP'.",
+        "phrasal_verb": "Drop by",
+        "phrasal_verb_meaning": "To visit someone informally without making an arrangement.",
+        "phrasal_verb_example": "Feel free to drop by my office if you have any questions.",
+        "grammar_tip": "Use 'Can I' or 'Could I' for informal requests. Use 'May I' for formal situations.",
+        "target_phrase": "I will drop by your house later this afternoon.",
+        "target_phrase_translation": "Eu vou dar uma passada na sua casa mais tarde hoje à tarde."
+    },
+    {
+        "day": 7,
+        "topic": "Weather; Perfect Tenses",
+        "fact_title": "The Great Smog of London",
+        "fact_text": "In 1952, a severe pollution event covered London for five days. It changed environmental laws worldwide.",
+        "fact_translation": "Em 1952, um grave evento de poluição cobriu Londres por cinco dias. Isso mudou as leis ambientais em todo o mundo.",
+        "phrasal_verb": "Clear up",
+        "phrasal_verb_meaning": "When the weather clears up, the clouds or rain go away.",
+        "phrasal_verb_example": "I hope the weather clears up before our picnic.",
+        "grammar_tip": "Use the Present Perfect (have + participle) for things that happened in the past but have a result now: 'It has rained, so the streets are wet.'",
+        "target_phrase": "I think the sky is starting to clear up.",
+        "target_phrase_translation": "Eu acho que o céu está começando a clarear."
+    },
+    {
+        "day": 8,
+        "topic": "Weather; Perfect Tenses",
+        "fact_title": "The Coldest Inhabited Place",
+        "fact_text": "Oymyakon, Russia, is the coldest permanently inhabited place on Earth. Temperatures have dropped to -71.2°C (-96°F).",
+        "fact_translation": "Oymyakon, na Rússia, é o lugar habitado permanentemente mais frio da Terra. As temperaturas já caíram para -71,2°C (-96°F).",
+        "phrasal_verb": "Bundle up",
+        "phrasal_verb_meaning": "To dress warmly, usually with many layers.",
+        "phrasal_verb_example": "You need to bundle up before going outside in the snow.",
+        "grammar_tip": "Past Perfect (had + participle) is used to show one action happened before another past action: 'By the time I left, the rain had stopped.'",
+        "target_phrase": "Make sure you bundle up, it's freezing outside.",
+        "target_phrase_translation": "Certifique-se de se agasalhar bem, está congelando lá fora."
+    },
+    {
+        "day": 9,
+        "topic": "Rooms and Furniture; Modal Verbs",
+        "fact_title": "IKEA's Naming System",
+        "fact_text": "IKEA names its products based on a strict system. For example, beds are named after Norwegian places, and chairs are named after men.",
+        "fact_translation": "A IKEA nomeia seus produtos com base em um sistema rigoroso. Por exemplo, camas recebem nomes de lugares noruegueses, e cadeiras nomes de homens.",
+        "phrasal_verb": "Put together",
+        "phrasal_verb_meaning": "To assemble something from different parts.",
+        "phrasal_verb_example": "It took me three hours to put this bookshelf together.",
+        "grammar_tip": "Use 'must' for strong obligations (I must go) and 'should' for advice (You should rest).",
+        "target_phrase": "We must put this table together before dinner.",
+        "target_phrase_translation": "Nós precisamos montar esta mesa antes do jantar."
+    },
+    {
+        "day": 10,
+        "topic": "Rooms and Furniture; Modal Verbs",
+        "fact_title": "The Invention of the Microwave",
+        "fact_text": "The microwave oven was invented by accident in 1945 when an engineer noticed a chocolate bar melted in his pocket while working on radar technology.",
+        "fact_translation": "O forno de micro-ondas foi inventado por acidente em 1945 quando um engenheiro notou que uma barra de chocolate derreteu em seu bolso enquanto trabalhava com tecnologia de radar.",
+        "phrasal_verb": "Clean up",
+        "phrasal_verb_meaning": "To make a place completely clean and tidy.",
+        "phrasal_verb_example": "You should clean up your room before guests arrive.",
+        "grammar_tip": "Modal verbs don't use 'do' or 'does' for questions. Incorrect: 'Do you can go?'. Correct: 'Can you go?'.",
+        "target_phrase": "Could you help me clean up the kitchen?",
+        "target_phrase_translation": "Você poderia me ajudar a limpar a cozinha?"
+    },
+    {
+        "day": 11,
+        "topic": "Food and Drinks; Prepositions",
+        "fact_title": "Coca-Cola's Original Recipe",
+        "fact_text": "When Coca-Cola was first launched in 1886, it was marketed as a medicine and contained trace amounts of cocaine.",
+        "fact_translation": "Quando a Coca-Cola foi lançada em 1886, ela era comercializada como remédio e continha vestígios de cocaína.",
+        "phrasal_verb": "Cut down on",
+        "phrasal_verb_meaning": "To consume less of something.",
+        "phrasal_verb_example": "I am trying to cut down on sugar.",
+        "grammar_tip": "Prepositions of place: We use 'in' for enclosed spaces (in the fridge), 'on' for surfaces (on the table), and 'at' for specific points (at the restaurant).",
+        "target_phrase": "I decided to cut down on fast food.",
+        "target_phrase_translation": "Eu decidi reduzir o consumo de fast food."
+    },
+    {
+        "day": 12,
+        "topic": "Food and Drinks",
+        "fact_title": "The World's Most Expensive Coffee",
+        "fact_text": "Kopi Luwak is one of the world's most expensive coffees. It's made from coffee beans that have been eaten and excreted by a civet cat.",
+        "fact_translation": "Kopi Luwak é um dos cafés mais caros do mundo. É feito de grãos de café que foram comidos e excretados por um gato civeta.",
+        "phrasal_verb": "Eat out",
+        "phrasal_verb_meaning": "To eat at a restaurant instead of at home.",
+        "phrasal_verb_example": "We are too tired to cook, let's eat out tonight.",
+        "grammar_tip": "We use 'some' in affirmative sentences (I have some water) and 'any' in negatives/questions (Do you have any water?).",
+        "target_phrase": "Would you like to eat out this weekend?",
+        "target_phrase_translation": "Você gostaria de comer fora neste fim de semana?"
+    },
+    {
+        "day": 13,
+        "topic": "Clothes; To/For Differences",
+        "fact_title": "The Zipper's Popularity",
+        "fact_text": "The zipper didn't become popular in clothing until the 1930s, when a campaign suggested it would help children dress themselves faster.",
+        "fact_translation": "O zíper não se tornou popular nas roupas até a década de 1930, quando uma campanha sugeriu que ajudaria as crianças a se vestirem mais rápido.",
+        "phrasal_verb": "Try on",
+        "phrasal_verb_meaning": "To put on a piece of clothing to see if it fits and how it looks.",
+        "phrasal_verb_example": "You should try on the shoes before buying them.",
+        "grammar_tip": "Use 'to' when there is a transfer or movement (give it to me). Use 'for' when someone benefits (I bought this for you).",
+        "target_phrase": "I need to try on this jacket to see if it fits.",
+        "target_phrase_translation": "Eu preciso experimentar esta jaqueta para ver se serve."
+    },
+    {
+        "day": 14,
+        "topic": "Clothes",
+        "fact_title": "High Heels for Men",
+        "fact_text": "High heels were originally worn by Persian soldiers in the 10th century to help them secure their feet in stirrups while riding horses.",
+        "fact_translation": "Sapatos de salto alto eram originalmente usados por soldados persas no século 10 para ajudá-los a prender os pés nos estribos enquanto andavam a cavalo.",
+        "phrasal_verb": "Dress up",
+        "phrasal_verb_meaning": "To wear formal clothes or a costume.",
+        "phrasal_verb_example": "We have to dress up for the wedding.",
+        "grammar_tip": "Remember that 'clothes' is always plural. You say 'My clothes are dirty', never 'My clothe is'.",
+        "target_phrase": "There is no need to dress up for the party.",
+        "target_phrase_translation": "Não há necessidade de se vestir formalmente para a festa."
+    },
+    {
+        "day": 15,
+        "topic": "Transportation and Travel",
+        "fact_title": "The Apollo 11 Computer",
+        "fact_text": "The computer that guided Apollo 11 to the moon in 1969 had less processing power than a basic modern smartphone.",
+        "fact_translation": "O computador que guiou a Apollo 11 até a lua em 1969 tinha menos poder de processamento do que um smartphone moderno básico.",
+        "phrasal_verb": "Take off",
+        "phrasal_verb_meaning": "When an airplane leaves the ground and starts flying.",
+        "phrasal_verb_example": "The plane will take off in twenty minutes.",
+        "grammar_tip": "Use 'by' for modes of transport (by car, by bus, by plane), but 'on foot' when walking.",
+        "target_phrase": "What time does your flight take off?",
+        "target_phrase_translation": "A que horas o seu voo decola?"
+    }
+]
+
+with open('C:\\\\Users\\\\felip\\\\.gemini\\\\antigravity\\\\scratch\\\\english-pills\\\\database.json', 'w', encoding='utf-8') as f:
+    json.dump(days, f, indent=4, ensure_ascii=False)
+    
+print("Database generated successfully.")

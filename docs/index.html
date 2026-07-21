@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Pills - Pronunciation Challenge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --success: #10b981;
+            --error: #ef4444;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .day-badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .phrase-container {
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+        }
+
+        .target-phrase {
+            font-size: 1.4rem;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .translation {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        .btn-speak {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto;
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-speak:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(59, 130, 246, 0.6);
+        }
+
+        .btn-speak:active {
+            transform: translateY(1px);
+        }
+
+        .btn-speak.listening {
+            background: #ef4444;
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        .result-area {
+            margin-top: 30px;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .you-said {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .feedback {
+            font-size: 1.3rem;
+            font-weight: 800;
+            padding: 10px 20px;
+            border-radius: 12px;
+            display: none;
+            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feedback.success {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .feedback.error {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--error);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        /* Loading Spinner */
+        .loader {
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Pronunciation Challenge</h1>
+        <div class="day-badge" id="day-badge">Day 1</div>
+
+        <div class="loader" id="loader"></div>
+
+        <div class="phrase-container" id="phrase-container" style="display: none;">
+            <div class="target-phrase" id="target-phrase">Loading phrase...</div>
+            <div class="translation" id="translation">Carregando tradução...</div>
+        </div>
+
+        <button class="btn-speak" id="btn-speak" style="display: none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" x2="12" y1="19" y2="22"></line>
+            </svg>
+            <span id="btn-text">Tap to Speak</span>
+        </button>
+
+        <div class="result-area">
+            <div class="you-said" id="you-said"></div>
+            <div class="feedback" id="feedback"></div>
+        </div>
+    </div>
+
+    <script>
+        // Get day from URL, default to 1
+        const urlParams = new URLSearchParams(window.location.search);
+        const day = parseInt(urlParams.get('day')) || 1;
+        
+        const loader = document.getElementById('loader');
+        const phraseContainer = document.getElementById('phrase-container');
+        const targetPhraseEl = document.getElementById('target-phrase');
+        const translationEl = document.getElementById('translation');
+        const btnSpeak = document.getElementById('btn-speak');
+        const btnText = document.getElementById('btn-text');
+        const dayBadge = document.getElementById('day-badge');
+        const youSaidEl = document.getElementById('you-said');
+        const feedbackEl = document.getElementById('feedback');
+
+        let expectedPhrase = "";
+
+        // Load data
+        async function init() {
+            loader.style.display = 'block';
+            dayBadge.innerText = `Day ${day}`;
+            
+            try {
+                const response = await fetch('database.json');
+                const data = await response.json();
+                
+                const todayData = data.find(d => d.day === day);
+                
+                if (todayData) {
+                    expectedPhrase = todayData.target_phrase;
+                    targetPhraseEl.innerText = expectedPhrase;
+                    translationEl.innerText = todayData.target_phrase_translation;
+                    
+                    loader.style.display = 'none';
+                    phraseContainer.style.display = 'block';
+                    
+                    // Check if browser supports SpeechRecognition
+                    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                        btnSpeak.style.display = 'flex';
+                    } else {
+                        youSaidEl.style.display = 'block';
+                        youSaidEl.innerText = "Sorry, your browser doesn't support speech recognition. Try Google Chrome or Safari.";
+                    }
+                } else {
+                    loader.style.display = 'none';
+                    targetPhraseEl.innerText = "Challenge not found for this day.";
+                    phraseContainer.style.display = 'block';
+                }
+            } catch (error) {
+                console.error("Error loading data:", error);
+                loader.style.display = 'none';
+                targetPhraseEl.innerText = "Error loading database.";
+                phraseContainer.style.display = 'block';
+            }
+        }
+
+        // Speech Recognition Setup
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        let recognition = null;
+
+        if (SpeechRecognition) {
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+
+            recognition.onstart = function() {
+                btnSpeak.classList.add('listening');
+                btnText.innerText = "Listening...";
+                youSaidEl.style.display = 'none';
+                feedbackEl.style.display = 'none';
+                feedbackEl.className = 'feedback';
+            };
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                const confidence = event.results[0][0].confidence;
+                
+                youSaidEl.style.display = 'block';
+                youSaidEl.innerHTML = `You said: <i>"${transcript}"</i>`;
+                
+                evaluateSpeech(transcript);
+            };
+
+            recognition.onerror = function(event) {
+                btnSpeak.classList.remove('listening');
+                btnText.innerText = "Tap to Speak";
+                youSaidEl.style.display = 'block';
+                youSaidEl.innerText = `Error: ${event.error}`;
+            };
+
+            recognition.onend = function() {
+                btnSpeak.classList.remove('listening');
+                btnText.innerText = "Tap to Speak";
+            };
+        }
+
+        btnSpeak.addEventListener('click', () => {
+            if (recognition) {
+                recognition.start();
+            }
+        });
+
+        function cleanString(str) {
+            return str.toLowerCase().replace(/[.,?!]/g, '').trim();
+        }
+
+        function evaluateSpeech(transcript) {
+            const cleanExpected = cleanString(expectedPhrase);
+            const cleanTranscript = cleanString(transcript);
+            
+            feedbackEl.style.display = 'block';
+            
+            // Jaccard similarity or simple string matching
+            if (cleanExpected === cleanTranscript) {
+                feedbackEl.classList.add('success');
+                feedbackEl.innerText = "Perfect Pronunciation! 🎉";
+            } else {
+                // If it contains more than 60% of the words
+                const expectedWords = cleanExpected.split(' ');
+                const spokenWords = cleanTranscript.split(' ');
+                let matches = 0;
+                
+                expectedWords.forEach(word => {
+                    if (spokenWords.includes(word)) matches++;
+                });
+                
+                const accuracy = matches / expectedWords.length;
+                
+                if (accuracy >= 0.8) {
+                    feedbackEl.classList.add('success');
+                    feedbackEl.innerText = "Great job! Almost perfect! 🌟";
+                } else if (accuracy >= 0.5) {
+                    feedbackEl.classList.add('error');
+                    feedbackEl.innerText = "Not bad, but try to speak clearer! 🗣️";
+                } else {
+                    feedbackEl.classList.add('error');
+                    feedbackEl.innerText = "Keep practicing! Let's try again. 💪";
+                }
+            }
+        }
+
+        // Run
+        init();
+
+    </script>
+</body>
+</html>

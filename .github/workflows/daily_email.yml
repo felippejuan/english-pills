@@ -1,0 +1,30 @@
+name: Daily English Pill
+
+on:
+  schedule:
+    - cron: '30 10 * * *' # 10:30 UTC = 07:30 BRT
+  workflow_dispatch: # Permite rodar manualmente pelo GitHub
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install gTTS
+
+      - name: Run script
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+        run: python send_email.py
