@@ -28,10 +28,9 @@ if not today_data:
     print("Error: Day data not found!")
     exit(1)
 
-# Format text properly (replace \n with HTML breaks)
 curiosity_html = today_data['curiosity_text'].replace('\\n', '<br><br>')
 
-# Build HTML (Apple-style Elegant Off-White)
+# Build HTML (Apple-style Elegant Off-White, safe for Gmail)
 html_content = f"""
 <!DOCTYPE html>
 <html>
@@ -39,11 +38,8 @@ html_content = f"""
 <style>
     body {{ 
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-        background-color: #f5f5f7; 
-        color: #1d1d1f; 
         margin: 0; 
-        padding: 40px 20px; 
-        line-height: 1.5; 
+        padding: 0; 
     }}
     .container {{ 
         background: #ffffff; 
@@ -69,8 +65,6 @@ html_content = f"""
     h2 {{ color: #1d1d1f; font-size: 22px; font-weight: 600; margin-top: 40px; margin-bottom: 15px; letter-spacing: -0.3px; }}
     p {{ font-size: 17px; color: #515154; margin-bottom: 16px; line-height: 1.6; }}
     
-    .curiosity-box {{ padding: 0; margin-bottom: 30px; }}
-    
     .grammar-box {{ 
         background: #fbfbfd; 
         border: 1px solid #d2d2d7; 
@@ -87,9 +81,7 @@ html_content = f"""
         overflow: hidden; 
         margin-top: 30px; 
         border: 1px solid #d2d2d7; 
-        transition: transform 0.3s ease; 
     }}
-    .yt-card:hover {{ transform: scale(1.02); }}
     .yt-img {{ width: 100%; display: block; border-bottom: 1px solid #d2d2d7; }}
     .yt-info {{ padding: 15px; background: #ffffff; text-align: left; }}
     .yt-title {{ color: #1d1d1f; font-weight: 600; font-size: 16px; margin: 0; }}
@@ -105,50 +97,52 @@ html_content = f"""
         border-radius: 30px; 
         font-weight: 600; 
         font-size: 18px; 
-        transition: background 0.3s ease; 
     }}
-    .btn:hover {{ background: #0077ed; }}
     .cta-hint {{ font-size: 14px; color: #86868b; margin-top: 15px; }}
-    
     .footer {{ margin-top: 40px; font-size: 13px; color: #86868b; text-align: center; }}
 </style>
 </head>
-<body>
-    <div class="container">
-        <div class="pill-badge">Day {current_day}</div>
-        <h1>{today_data['topic']}</h1>
-        
-        <h2>{today_data['curiosity_title']}</h2>
-        <div class="curiosity-box">
-            <p>{curiosity_html}</p>
-        </div>
+<body style="background-color: #f5f5f7;">
+    <!-- Wrapper div with inline background to force Gmail to show the off-white color -->
+    <div style="background-color: #f5f5f7; width: 100%; padding: 40px 0;">
+        <div class="container">
+            <div class="pill-badge">Day {current_day}</div>
+            <h1>{today_data['topic']}</h1>
+            
+            <h2>{today_data['curiosity_title']}</h2>
+            <div class="curiosity-box">
+                <p>{curiosity_html}</p>
+            </div>
 
-        <h2>💡 Grammar Focus</h2>
-        <div class="grammar-box">
-            <p>{today_data['grammar_tip']}</p>
-        </div>
+            <h2>💡 Grammar Focus</h2>
+            <div class="grammar-box">
+                <p>{today_data['grammar_tip']}</p>
+            </div>
 """
 
 if 'youtube_video' in today_data and 'youtube_thumbnail' in today_data:
+    # Use the actual video title if provided in the DB
+    yt_title = today_data.get('youtube_title', '▶️ Watch Video')
     html_content += f"""
-        <a href="{today_data['youtube_video']}" class="yt-card" target="_blank">
-            <img src="{today_data['youtube_thumbnail']}" alt="YouTube Video" class="yt-img">
-            <div class="yt-info">
-                <p class="yt-title">▶️ Watch Video</p>
-                <p class="yt-subtitle">Immerse yourself in today's topic (Under 10 mins)</p>
-            </div>
-        </a>
+            <a href="{today_data['youtube_video']}" class="yt-card" target="_blank">
+                <img src="{today_data['youtube_thumbnail']}" alt="YouTube Video" class="yt-img">
+                <div class="yt-info">
+                    <p class="yt-title">{yt_title}</p>
+                    <p class="yt-subtitle">Immerse yourself in today's topic (Under 10 mins)</p>
+                </div>
+            </a>
     """
 
 html_content += f"""
-        <div class="cta-container">
-            <h2 style="margin-top: 0; margin-bottom: 20px;">Unlock Your Fluency</h2>
-            <a href="https://felippejuan.github.io/english-pills/?day={current_day}" class="btn">Open Fluency Coach</a>
-            <p class="cta-hint">Calibrate your vocabulary and train your pronunciation.</p>
-        </div>
+            <div class="cta-container">
+                <h2 style="margin-top: 0; margin-bottom: 20px;">Unlock Your Fluency</h2>
+                <a href="https://felippejuan.github.io/english-pills/?day={current_day}" class="btn">Open Fluency Coach</a>
+                <p class="cta-hint">Calibrate your vocabulary and train your pronunciation.</p>
+            </div>
 
-        <div class="footer">
-            <p>Designed for you. Powered by Gemini AI.</p>
+            <div class="footer">
+                <p>Designed for you. Powered by Gemini AI.</p>
+            </div>
         </div>
     </div>
 </body>
