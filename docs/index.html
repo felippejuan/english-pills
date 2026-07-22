@@ -237,6 +237,8 @@
 </div>
 
 <script>
+    const BLOB_URL = "https://jsonblob.com/api/jsonBlob/019f8c2d-782a-7e64-b465-9b43a529df2f";
+    
     // Obfuscated Gemini API Key (Reversed)
     const encRev = "wT2_56jR6-RUEcgTOqj9k7jxDacwREeudWYrpywFgbrL6NR8bA.QA";
     const GEMINI_KEY = encRev.split('').reverse().join('');
@@ -244,7 +246,7 @@
     const urlParams = new URLSearchParams(window.location.search);
     const today = parseInt(urlParams.get('day')) || 1;
     
-    let localState = { progress: {}, schedule: {} };
+    let cloudState = { progress: {}, schedule: {} };
     let selectedWords = new Set();
     
     let dayData = null;
@@ -327,12 +329,10 @@
             const dbData = await res1.json();
             dayData = dbData.find(d => d.day === today);
             
-            // Load LocalStorage State
-            const savedState = localStorage.getItem('fluency_coach_state');
-            if(savedState) {
-                localState = JSON.parse(savedState);
-            }
-            if(!localState.schedule) localState.schedule = {};
+            // Load Cloud State
+            const res2 = await fetch(BLOB_URL);
+            cloudState = await res2.json();
+            if(!cloudState.schedule) cloudState.schedule = {};
             
             if (dayData) {
                 // Strip tags for reading
@@ -399,7 +399,7 @@
             window.getSelection().removeAllRanges();
             
             // Instant SRS Update on Learn Click
-            updateLocalState(exp);
+            updateCloudState(exp);
         }
     });
 
@@ -490,21 +490,25 @@
 
     function getDueWords() {
         let due = [];
-        for (const [word, days] of Object.entries(localState.schedule)) {
+        for (const [word, days] of Object.entries(cloudState.schedule)) {
             if (days.includes(today)) due.push(word);
         }
         return due;
     }
     
     // Instant SRS Save
-    function updateLocalState(word) {
+    async function updateCloudState(word) {
         const pimsleur = [1, 7, 14, 30];
-        if(!localState.schedule[word]) {
-            localState.schedule[word] = pimsleur.map(i => today + i);
+        if(!cloudState.schedule[word]) {
+            cloudState.schedule[word] = pimsleur.map(i => today + i);
         }
-        // Remove from today if present
-        localState.schedule[word] = localState.schedule[word].filter(d => d !== today);
-        localStorage.setItem('fluency_coach_state', JSON.stringify(localState));
+        cloudState.schedule[word] = cloudState.schedule[word].filter(d => d !== today);
+        
+        await fetch(BLOB_URL, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(cloudState)
+        });
     }
 
     startBtn.addEventListener('click', async () => {
@@ -517,7 +521,9 @@
         startBtn.disabled = true;
         
         // Ensure all selected words are marked as reviewed today
-        selectedWords.forEach(word => updateLocalState(word));
+        for (let word of selectedWords) {
+            await updateCloudState(word);
+        }
         
         await fetchHybridExercises();
     });
