@@ -479,7 +479,12 @@
 
     function renderTooltip(data) {
         document.getElementById('tt-word').innerText = data.word;
-        document.getElementById('tt-phonetic').innerText = `🔊 Pronuncia-se: ${data.phonetic_br}`;
+        document.getElementById('tt-phonetic').innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span>🔊 ${data.phonetic_br}</span>
+                <button class="btn-icon" style="padding:4px 8px; font-size:12px; margin-left: 10px;" onclick="speakText('${data.word.replace(/'/g, "\\'")}')">Listen Word</button>
+            </div>
+        `;
         document.getElementById('tt-def').innerText = data.definition;
         
         let exHtml = "";
