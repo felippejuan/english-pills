@@ -237,7 +237,8 @@
 </div>
 
 <script>
-    const BLOB_URL = "https://jsonblob.com/api/jsonBlob/019f8c2d-782a-7e64-b465-9b43a529df2f";
+    // Cloud Database Endpoint (AWS API Gateway -> Lambda -> DynamoDB)
+    const CLOUD_URL = "https://a2jbc84hx8.execute-api.us-east-2.amazonaws.com/prod/state";
     
     // Obfuscated Gemini API Key (Reversed)
     const encRev = "wT2_56jR6-RUEcgTOqj9k7jxDacwREeudWYrpywFgbrL6NR8bA.QA";
@@ -330,7 +331,7 @@
             dayData = dbData.find(d => d.day === today);
             
             // Load Cloud State
-            const res2 = await fetch(BLOB_URL);
+            const res2 = await fetch(CLOUD_URL);
             cloudState = await res2.json();
             if(!cloudState.schedule) cloudState.schedule = {};
             
@@ -504,7 +505,7 @@
         }
         cloudState.schedule[word] = cloudState.schedule[word].filter(d => d !== today);
         
-        await fetch(BLOB_URL, {
+        await fetch(CLOUD_URL, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify(cloudState)
