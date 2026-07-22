@@ -448,7 +448,7 @@
             }
         };
 
-        const prompt = `Provide educational details for the English expression "${word}".`;
+        const prompt = `Provide educational details for the English expression "${word}". For 'phonetic_br', provide a phonetic approximation of how a Brazilian Portuguese speaker would naturally read it using standard Portuguese syllables (e.g., for 'showcasing' use 'chou queizin', for 'random' use 'rén-dom'). Do not use IPA symbols.`;
 
         try {
             const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`, {
