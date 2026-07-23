@@ -204,6 +204,18 @@
         <button class="btn" id="start-exercises-btn" style="margin-top: 35px;">Generate AI Exercises</button>
     </div>
 
+    <div class="card hidden" id="flashcard-card">
+        <div class="tools-header">
+            <h2 style="margin:0;">Vocabulary Review</h2>
+        </div>
+        <p style="color: var(--secondary-text); margin-bottom: 25px;">Review these flashcards before your training begins.</p>
+        
+        <div id="flashcards-container" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
+        </div>
+        
+        <button class="btn" id="start-training-btn">Start Exercises</button>
+    </div>
+
     <div class="card hidden" id="exercise-card">
         <div class="exercise-header">
             <div style="display: flex; align-items: center; gap: 12px;">
@@ -356,7 +368,7 @@
                 fullTextToRead = tempDiv.textContent || tempDiv.innerText || "";
                 
                 // V13 Spacing fix: parse \n\n into proper paragraph tags with less margin
-                const pText = fullTextToRead.split('\\n\\n').map(p => `<p>${p}</p>`).join('');
+                const pText = fullTextToRead.replace(/\*\*/g, '').split('\\n\\n').map(p => `<p>${p}</p>`).join('');
                 textContent.innerHTML = pText;
                 
                 // Removed video embed logic from UI per user request
@@ -555,6 +567,35 @@
         await fetchHybridExercises();
     });
 
+    function showFlashcards() {
+        calibCard.classList.add('hidden');
+        document.getElementById('flashcard-card').classList.remove('hidden');
+        
+        const fcContainer = document.getElementById('flashcards-container');
+        fcContainer.innerHTML = '';
+        
+        const wordsList = Array.from(selectedWords);
+        wordsList.forEach(w => {
+            const data = tooltipCache[w];
+            if (!data) return;
+            const exHtml = data.examples.map(ex => `<p class="tt-ex">${ex}</p>`).join('');
+            fcContainer.innerHTML += `
+                <div style="background: #ffffff; border: 1px solid var(--border); border-radius: 16px; padding: 20px; text-align: left; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                    <p class="tt-word" style="font-size: 20px;">${data.word}</p>
+                    <p class="tt-phonetic">${data.phonetic_br}</p>
+                    <p class="tt-def" style="margin-bottom: 10px;">${data.definition}</p>
+                    ${exHtml}
+                </div>
+            `;
+        });
+    }
+
+    document.getElementById('start-training-btn').addEventListener('click', () => {
+        document.getElementById('flashcard-card').classList.add('hidden');
+        exCard.classList.remove('hidden');
+        showExercise();
+    });
+
     // HYBRID EXERCISE FETCHER
     async function fetchHybridExercises() {
         currentExercises = [];
@@ -574,9 +615,7 @@
             const diffOrder = { 'easy': 1, 'medium': 2, 'hard': 3 };
             currentExercises.sort((a, b) => diffOrder[a.difficulty] - diffOrder[b.difficulty]);
             
-            calibCard.classList.add('hidden');
-            exCard.classList.remove('hidden');
-            showExercise();
+            showFlashcards();
             return;
         }
 
@@ -622,9 +661,7 @@
             const diffOrder = { 'easy': 1, 'medium': 2, 'hard': 3 };
             currentExercises.sort((a, b) => diffOrder[a.difficulty] - diffOrder[b.difficulty]);
             
-            calibCard.classList.add('hidden');
-            exCard.classList.remove('hidden');
-            showExercise();
+            showFlashcards();
             
         } catch(e) {
             console.error("Exercise generation failed: ", e);
