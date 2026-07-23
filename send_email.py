@@ -2,6 +2,7 @@ import json
 import os
 import smtplib
 import datetime
+import re
 from email.message import EmailMessage
 
 # Get environment variables
@@ -29,6 +30,7 @@ if not today_data:
     exit(1)
 
 curiosity_html = today_data['curiosity_text'].replace('\\n\\n', '<br><br>').replace('\\n', '<br>')
+curiosity_html = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', curiosity_html)
 
 # Build HTML (Apple-style Elegant Off-White, safe for Gmail)
 html_content = f"""
