@@ -105,10 +105,14 @@
         .btn:active { transform: translateY(0); }
         .btn:disabled { background: #d2d2d7; box-shadow: none; cursor: not-allowed; transform: none; color: #86868b; }
         
+        #word-tooltip-overlay {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); z-index: 999; backdrop-filter: blur(4px);
+        }
         #word-tooltip {
             background: #ffffff; border: 1px solid var(--border); border-radius: 20px;
-            padding: 24px; margin-top: 25px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-            display: none; position: relative;
+            padding: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 90%; max-width: 450px; z-index: 1000;
         }
         .tt-word { font-size: 22px; font-weight: 700; margin: 0 0 5px 0; background: var(--accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .tt-phonetic { font-size: 15px; color: var(--secondary-text); margin-bottom: 15px; }
@@ -180,16 +184,14 @@
         <p style="color: var(--secondary-text); margin-bottom: 25px;">Highlight any word or expression to learn it.</p>
         
         <div id="text-content"></div>
-        <div id="video-container" style="margin-top: 20px; text-align: center;" class="hidden">
-            <h4 id="video-title" style="margin-bottom: 10px; color: var(--accent);"></h4>
-            <iframe id="youtube-player" width="100%" height="250" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></iframe>
-        </div>
         
         <button id="floating-btn">💡 Learn Expression</button>
         
         <div class="selected-list" id="selected-list"></div>
         
+        <div id="word-tooltip-overlay" onclick="closeTooltip()"></div>
         <div id="word-tooltip">
+            <button class="btn-icon" style="position: absolute; right: 15px; top: 15px; padding: 4px 8px; font-size: 12px;" onclick="closeTooltip()">✕</button>
             <div id="tt-loader" class="loader" style="display: block; margin: 20px auto;"></div>
             <div id="tt-content" class="hidden">
                 <p class="tt-word" id="tt-word">Word</p>
@@ -357,15 +359,7 @@
                 const pText = fullTextToRead.split('\\n\\n').map(p => `<p>${p}</p>`).join('');
                 textContent.innerHTML = pText;
                 
-                if (dayData.youtube_video) {
-                    const videoId = dayData.youtube_video.split('v=')[1];
-                    document.getElementById('youtube-player').src = `https://www.youtube.com/embed/${videoId}`;
-                    document.getElementById('video-title').innerText = dayData.youtube_title || "Related Video";
-                    document.getElementById('video-container').classList.remove('hidden');
-                } else {
-                    document.getElementById('video-container').classList.add('hidden');
-                    document.getElementById('youtube-player').src = "";
-                }
+                // Removed video embed logic from UI per user request
                 
                 if (dayData.tooltips) {
                     for (const [key, value] of Object.entries(dayData.tooltips)) {
@@ -438,7 +432,7 @@
     window.removeChip = function(word, btn) {
         selectedWords.delete(word);
         btn.parentElement.remove();
-        tooltip.style.display = 'none';
+        closeTooltip();
     }
 
     readBtn.addEventListener('click', () => speakText(fullTextToRead));
@@ -446,8 +440,14 @@
     listenScrambleBtn.addEventListener('click', () => speakText(expectedSentence));
 
     // HYBRID TOOLTIP FETCHER
+    function closeTooltip() {
+        document.getElementById('word-tooltip').style.display = 'none';
+        document.getElementById('word-tooltip-overlay').style.display = 'none';
+    }
+
     async function fetchHybridTooltip(word) {
         tooltip.style.display = 'block';
+        document.getElementById('word-tooltip-overlay').style.display = 'block';
         ttContent.classList.add('hidden');
         ttLoader.style.display = 'block';
         
@@ -491,7 +491,7 @@
         } catch(e) {
             console.error(e);
             alert("AI GENERATION ERROR: " + e.message);
-            tooltip.style.display = 'none';
+            closeTooltip();
         }
     }
 

@@ -28,7 +28,7 @@ if not today_data:
     print("Error: Day data not found!")
     exit(1)
 
-curiosity_html = today_data['curiosity_text'].replace('\\n', '<br><br>')
+curiosity_html = today_data['curiosity_text'].replace('\\n\\n', '<br><br>').replace('\\n', '<br>')
 
 # Build HTML (Apple-style Elegant Off-White, safe for Gmail)
 html_content = f"""
