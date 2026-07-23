@@ -3,7 +3,7 @@
         "topic": "The Secret Behind the Michelin Guide",
         "curiosity_title": "Beyond the Bib Gourmand: Unpacking the Michelin Mystique",
         "curiosity_text": "The Michelin Guide, often perceived as the ultimate arbiter of culinary excellence, began its journey in 1900 as a mere promotional tool for tire sales. André and Édouard Michelin compiled a guide for motorists, listing mechanics, hotels, and restaurants. Over time, its focus shifted dramatically. The true secret lies not just in its rigorous inspection process, but in its **eschewal** of external influence, ensuring an almost **discerning** impartiality. Anonymous inspectors, often former hospitality professionals, visit restaurants multiple times, paying for their meals to maintain objectivity. They evaluate based on five criteria: quality of ingredients, mastery of flavor and cooking techniques, the personality of the chef in the cuisine, value for money, and consistency between visits. This meticulous approach has cemented its status, transforming a humble travel companion into a global benchmark, influencing the often **ephemeral** world of haute cuisine for over a century, making or breaking culinary careers with a single star.",
-        "grammar_tip": "Notice the use of a gerund (-ing form) acting as a participle clause, like 'ensuring an almost discerning impartiality'. This structure adds extra information about the preceding clause, often explaining a result or concurrent action, making your sentences more concise and sophisticated.",
+        "grammar_tip": "B1 Grammar: The Present Perfect ('have done') is used for past actions that have a connection to the present. Example: 'I have finished my homework.' (It is done now). It focuses on the result rather than the exact time.",
         "tooltips": {
             "eschewal": {
                 "word": "eschewal",
@@ -48,6 +48,12 @@
                 "word": "ephemeral",
                 "difficulty": "hard",
                 "sentence": "Unscramble: often of fashion world is the ephemeral in success."
+            },
+            {
+                "word": "have done",
+                "difficulty": "medium",
+                "sentence": "I ______ (do) all my chores, so now I can finally relax.",
+                "type": "grammar"
             }
         ],
         "day": 1,
@@ -58,7 +64,7 @@
         "topic": "How the Weekend Was Invented: A Societal Shift",
         "curiosity_title": "Leisure's Legacy: Unpacking the Genesis of Our Beloved Break",
         "curiosity_text": "The concept of a structured 'weekend' – a period of rest explicitly disconnected from work – is not an ancient human institution but a relatively modern societal construct. For millennia, work and leisure were often intertwined, dictated by agricultural cycles or religious observations, but rarely featuring a universal, two-day respite. The erstwhile rhythms of pre-industrial life gave way to the relentless demands of factory work during the Industrial Revolution. Workers toiled six or even seven days a week, often for grueling hours. It was largely due to powerful labor movements and religious traditions, particularly the Jewish Sabbath (Saturday) and Christian Sunday observance, that the idea of a Saturday half-day, evolving into a full Saturday off, began to gain traction. Ford Motor Company's decision in 1926 to adopt a five-day, 40-hour work week for factory employees is frequently cited as a significant progenitor of the modern weekend, though the practice had been advocated earlier. This pivotal shift was not merely an act of corporate benevolence but a pragmatic move to boost morale and reduce absenteeism. Today, the weekend is a ubiquitous fixture in most societies, a testament to collective human endeavor for better working conditions and a balanced life.",
-        "grammar_tip": "The passive voice is frequently used when the action is more important than the doer, or when the doer is unknown/unimportant. For example, 'the weekend was invented' focuses on the creation, not who specifically created it. Remember to form it with 'to be' + past participle (e.g., 'was dictated', 'is cited').",
+        "grammar_tip": "B1 Grammar: Prepositions of time and place (in, on, at). Use 'in' for months/years/enclosed spaces, 'on' for days/surfaces, and 'at' for exact times/specific points.",
         "tooltips": {
             "erstwhile": {
                 "word": "erstwhile",
@@ -103,6 +109,12 @@
                 "word": "progenitor",
                 "difficulty": "hard",
                 "sentence": "the of movement progenitor art was a significant modern"
+            },
+            {
+                "word": "on",
+                "difficulty": "easy",
+                "sentence": "The meeting is ______ Monday morning.",
+                "type": "grammar"
             }
         ],
         "day": 2,
@@ -113,7 +125,7 @@
         "topic": "The Great Emu War: A Peculiar Episode in Australian History",
         "curiosity_title": "When Australian Soldiers Declared War on Birds (and Lost)",
         "curiosity_text": "The year was 1932, and Western Australia faced an unexpected adversary: a burgeoning population of some 20,000 emus causing widespread devastation to wheat crops. In a bizarre move, the Australian military was deployed, equipped with machine guns, to combat these flightless birds. What ensued was a rather an **inglorious** campaign, often derided as 'The Great Emu War'. Despite the soldiers' tactical training and superior firepower, the emus proved to be surprisingly formidable opponents, their erratic movements and sheer numbers rendering conventional military tactics **futile**. The operation, led by Major G.P.W. Meredith, quickly devolved into a **fiasco**, with a mere few hundred emus dispatched for thousands of rounds of ammunition expended. This peculiar historical footnote serves as a stark reminder that sometimes, the most unassuming foes can present the most intractable challenges, demonstrating the absurdity of human attempts to control nature.",
-        "grammar_tip": "Participle clauses (e.g., 'rendering', 'demonstrating') can add descriptive detail or consequence to a main clause, making sentences more concise and sophisticated. They often convey simultaneous action or result without needing an explicit conjunction.",
+        "grammar_tip": "B1 Grammar: 'Yet' at the end of the sentence. In present perfect, 'yet' is used in negative sentences and questions to talk about something expected that hasn't happened. Example: 'I haven't eaten yet.'",
         "tooltips": {
             "inglorious": {
                 "word": "inglorious",
@@ -158,6 +170,12 @@
                 "word": "fiasco",
                 "difficulty": "hard",
                 "sentence": "unscramble: logistical / due / concert / a / poor / fiasco / turned / into / planning / the"
+            },
+            {
+                "word": "yet",
+                "difficulty": "medium",
+                "sentence": "Have you finished reading the report ______?",
+                "type": "grammar"
             }
         ],
         "day": 3,
@@ -168,7 +186,7 @@
         "topic": "Why the Sky is Blue: Unveiling Rayleigh Scattering",
         "curiosity_title": "The Azure Enigma Above Us: A Tale of Light and Atmosphere",
         "curiosity_text": "Have you ever pondered why the vast expanse above us presents such a mesmerizing blue hue? The answer lies in a phenomenon known as Rayleigh scattering. Sunlight, appearing white to our eyes, is actually a spectrum of colors, each with a different wavelength. As this light traverses Earth's atmosphere, it encounters tiny gas molecules and particles. Shorter wavelengths, such as blue and violet, are scattered much more effectively than longer wavelengths like red and yellow. This differential scattering is a pristine phenomenon that dictates the sky's appearance. The blue light, dispersed in all directions, reaches our eyes from every part of the sky. Meanwhile, the red and yellow light largely passes straight through, which is why the sun can appear yellowish or reddish at sunrise and sunset when its light must travel through more atmosphere. This pervading principle of physics beautifully explains not only our blue skies but also the subtle effulgence of distant mountains veiled in haze.",
-        "grammar_tip": "Notice the use of 'as' to introduce a subordinate clause indicating simultaneous action, like 'As this light traverses Earth's atmosphere...' This structure helps to connect actions happening concurrently, providing context for the main clause.",
+        "grammar_tip": "B1 Grammar: 'Used to' describes past habits or states that are no longer true. Example: 'I used to live in Paris' (but now I don't).",
         "tooltips": {
             "pristine": {
                 "word": "pristine",
@@ -213,6 +231,12 @@
                 "word": "effulgence",
                 "difficulty": "hard",
                 "sentence": "Unscramble: night the effulgence of the city's lights pierced dark the."
+            },
+            {
+                "word": "used to",
+                "difficulty": "medium",
+                "sentence": "When I was a kid, I ______ play video games all day.",
+                "type": "grammar"
             }
         ],
         "day": 4,
@@ -223,7 +247,7 @@
         "topic": "The Invention of the Sandwich",
         "curiosity_title": "A Culinary Anecdote: The Genesis of the Sandwich",
         "curiosity_text": "The humble sandwich, a ubiquitous staple of modern diets, boasts an intriguing origin story rooted in 18th-century England. Popular lore attributes its invention to John Montagu, the 4th Earl of Sandwich, a prominent figure renowned for his **predilection** for prolonged gambling sessions. Legend has it that the Earl, unwilling to leave the card table for a formal meal, instructed his servants to bring him slices of cold beef between two pieces of toasted bread. This ingenious solution allowed him to continue playing cards while **sating** his hunger without soiling his hands or the cards. While historical evidence suggests he might have simply preferred this convenient method of eating at his desk, away from interruptions, the **culinary** innovation quickly caught on among his contemporaries. What began as a practical expediency for a nobleman's leisure activity thus evolved into a global gastronomic phenomenon, transforming simple ingredients into a versatile and beloved meal.",
-        "grammar_tip": "Pay attention to the use of present participles (-ing forms) like 'sating' and 'soiling'. They can function as adjectives, parts of continuous tenses, or, as seen here, to describe simultaneous actions or consequences, often introduced by 'while' or implying a result.",
+        "grammar_tip": "B1 Grammar: First Conditional. Used for real possibilities in the future. Structure: If + Present Simple, ... will + infinitive. Example: 'If it rains, we will stay home.'",
         "tooltips": {
             "predilection": {
                 "word": "predilection",
@@ -268,6 +292,12 @@
                 "word": "culinary",
                 "difficulty": "hard",
                 "sentence": "The (rnyicu la) arts academy trained aspiring chefs from around the world."
+            },
+            {
+                "word": "will stay",
+                "difficulty": "hard",
+                "sentence": "If the weather gets worse, we ______ (stay) indoors.",
+                "type": "grammar"
             }
         ],
         "day": 5,
@@ -278,7 +308,7 @@
         "topic": "How the Romans invented concrete",
         "curiosity_title": "Ancient Engineering Marvel: The Enduring Legacy of Roman Concrete",
         "curiosity_text": "The ingenuity of the Roman Empire extended far beyond military conquest and political governance; it encompassed groundbreaking advancements in civil engineering, most notably their pioneering use of concrete. Far from being a mere precursor, Roman concrete, known as *opus caementicium*, possessed remarkable durability that has allowed structures like the Pantheon and parts of the Colosseum to withstand the ravages of time. Its unique composition, primarily volcanic ash (pozzolana), lime, and aggregate, reacted with seawater in marine environments to form incredibly strong and resilient bonds, a phenomenon that has only recently been fully understood by modern material scientists. This impervious quality enabled the Romans to construct ambitious aqueducts, formidable harbor facilities, and magnificent domes that defied earlier architectural constraints. Their methods, a testament to empirical observation and practical application, provided a lasting legacy that continues to underscore the brilliance of their engineers, a brilliance arguably unmatched for centuries after the Empire's decline.",
-        "grammar_tip": "Relative clauses (e.g., 'a phenomenon *that has only recently been fully understood*') provide additional information about a noun without starting a new sentence, making your writing more concise and sophisticated. They can be introduced by 'who,' 'which,' 'that,' 'whose,' or 'where,' among others.",
+        "grammar_tip": "B1 Grammar: Modals of deduction. Use 'must' when you are sure something is true, and 'can't' when you are sure it's impossible. Example: 'You haven't eaten all day. You must be starving.'",
         "tooltips": {
             "pioneering": {
                 "word": "pioneering",
@@ -323,6 +353,12 @@
                 "word": "underscore",
                 "difficulty": "hard",
                 "sentence": "the need for international cooperation The climate crisis underscores."
+            },
+            {
+                "word": "must be",
+                "difficulty": "medium",
+                "sentence": "They have a huge mansion. They ______ very rich.",
+                "type": "grammar"
             }
         ],
         "day": 6,
@@ -333,7 +369,7 @@
         "topic": "The Origin of the Olympic Games",
         "curiosity_title": "From Ancient Olympia to Global Spectacle: A Legacy Unveiled",
         "curiosity_text": "The Olympic Games, a quadrennial international multi-sport event, represent the pinnacle of athletic achievement and global unity. Their origins, however, hark back to the sacred landscapes of ancient Greece, specifically Olympia, where they were first documented in 776 BC. These initial games were not merely sporting contests but deeply religious festivals held in honor of Zeus. The site itself was considered sacrosanct, a venerated sanctuary where truces were declared across warring city-states to allow participants safe passage. Athletes, vying for glory and a simple olive wreath, showcased their physical prowess in events like running, wrestling, and chariot racing. The spirit of these ancient competitions, emphasizing peace, athleticism, and cultural exchange, laid the foundational stones for the modern Olympic movement, revived in the late 19th century. This enduring legacy continues to captivate billions, a testament to the timeless human pursuit of excellence.",
-        "grammar_tip": "Advanced learners often use participle phrases to add detail concisely. In 'Athletes, vying for glory...', 'vying for glory' is a present participle phrase acting adjectivally to describe 'Athletes', providing extra information about their motivation without needing a separate clause.",
+        "grammar_tip": "B1 Grammar: Relative Clauses. Use 'who' for people, 'which' for things, and 'where' for places. Example: 'The man who called you is my uncle.'",
         "tooltips": {
             "venerated": {
                 "word": "venerated",
@@ -378,6 +414,12 @@
                 "word": "hark back to",
                 "difficulty": "hard",
                 "sentence": "ancient / customs / many / celebrations / to / These / modern / often / hark / back"
+            },
+            {
+                "word": "who",
+                "difficulty": "easy",
+                "sentence": "The woman ______ is wearing the red dress is my boss.",
+                "type": "grammar"
             }
         ],
         "day": 7,
@@ -388,7 +430,7 @@
         "topic": "The Epicurean Journey of Chocolate",
         "curiosity_title": "From Bitter Brew to Global Craving: A Chocolate Odyssey",
         "curiosity_text": "Chocolate's storied past is far richer and more complex than most imagine. Originating in Mesoamerica, where the Olmec, Maya, and Aztec civilizations revered cacao, it was initially consumed as a bitter, frothy beverage, often spiced and used in rituals. Far from the confectionary delight we know, ancient chocolate was a panacea, believed to possess divine properties and medicinal benefits. The Spanish conquistadors, upon encountering this indigenous staple, were initially underwhelmed but soon recognized its potential. They brought cacao beans back to Europe, where it gradually transformed from a mystical elixir to a luxurious, sweetened drink for the elite. The industrial revolution, particularly the invention of the cocoa press in the 19th century, proved to be a watershed moment, democratizing chocolate and paving the way for solid chocolate bars. This technological leap precipitated its metamorphosis into a globally beloved treat, a far cry from its ancient, ceremonial roots. Today, its ubiquity is such that one might consider its history a true apotheosis of a simple bean.",
-        "grammar_tip": "The text employs several instances of the passive voice (e.g., 'it was initially consumed', 'were initially underwhelmed') to describe the transformation and reception of chocolate. The passive voice is particularly useful in historical narratives when the agent of the action is less important than the action itself or its recipient, allowing the focus to remain on the subject undergoing the change.",
+        "grammar_tip": "B1 Grammar: Passive Voice (Present/Past). Focuses on the action rather than who did it. Structure: verb to be + past participle. Example: 'The book was written in 1999.'",
         "tooltips": {
             "panacea": {
                 "word": "panacea",
@@ -433,6 +475,12 @@
                 "word": "apotheosis",
                 "difficulty": "hard",
                 "sentence": "The band's performance at the festival was widely considered (of / apotheosis / their / artistry / the)."
+            },
+            {
+                "word": "was written",
+                "difficulty": "hard",
+                "sentence": "This famous novel ______ (write) by George Orwell.",
+                "type": "grammar"
             }
         ],
         "day": 8,
@@ -443,7 +491,7 @@
         "topic": "The Enigma of the Pyramids: Unraveling Ancient Construction",
         "curiosity_title": "Beyond the Brute Force: Engineering Marvels of Antiquity",
         "curiosity_text": "The construction of the Egyptian pyramids remains one of history's most enduring puzzles, especially given the rudimentary tools available to ancient builders. Far from relying solely on brute force, evidence suggests an astonishing level of organization and engineering prowess. The sheer scale presented a colossal logistical challenge, coordinating tens of thousands of workers, quarrying vast quantities of stone, and transporting them across considerable distances. While the precise methods are still a subject of perennial debate among Egyptologists, theories often converge on the use of ingenious ramps —straight, spiral, or internal—that allowed massive blocks, some weighing many tons, to be hauled into place. These monumental structures, built without modern machinery, stand as a testament to the ancient Egyptians' sophisticated understanding of mechanics, geometry, and resource management, pushing the boundaries of what was thought achievable.",
-        "grammar_tip": "The passive voice is frequently used when discussing historical events or scientific processes, as it emphasizes the action or the result rather than the agent. For example, 'The pyramids were built by ancient Egyptians' focuses on the construction rather than explicitly highlighting the builders, especially when the exact individuals are unknown or less relevant than the achievement itself.",
+        "grammar_tip": "B1 Grammar: Comparatives. Use 'much' or 'a lot' to make a comparative stronger. Example: 'This car is much faster than the old one.'",
         "tooltips": {
             "logistical challenge": {
                 "word": "logistical challenge",
@@ -488,6 +536,12 @@
                 "word": "perennial debate",
                 "difficulty": "hard",
                 "sentence": "Unscramble the words to form a sentence using the expression: 'methods is perennial among construction a debate scholars the pyramids''"
+            },
+            {
+                "word": "much better",
+                "difficulty": "medium",
+                "sentence": "After taking the medicine, I feel ______ (a lot better) today.",
+                "type": "grammar"
             }
         ],
         "day": 9,
@@ -498,7 +552,7 @@
         "topic": "The invention of the Internet",
         "curiosity_title": "From Military Might to Global Connectivity: The Internet's Genesis",
         "curiosity_text": "The genesis of the Internet is often traced back to the late 1960s with ARPANET, a groundbreaking project initiated by the U.S. Department of Defense. Its primary objective was to facilitate communication and resource sharing among geographically dispersed research institutions, particularly in a scenario where conventional communication infrastructure might be compromised. This nascent network was a pivotal development, laying the groundwork for what would become a global phenomenon. Early pioneers, driven by an almost prescient understanding of future connectivity needs, worked tirelessly to overcome technological impediments. They envisioned a decentralized system that would be robust and resilient. Over subsequent decades, ARPANET evolved, incorporating new protocols and expanding its reach beyond military and academic circles, ultimately blossoming into the ubiquitous internet we rely upon today. Its transformation from a niche military project to an indispensable tool for information exchange and social interaction is a testament to human ingenuity and collaborative spirit.",
-        "grammar_tip": "Participle Clauses: Often used in advanced writing to compress information, particularly when two actions occur simultaneously or one action causes another. For instance, 'laying the groundwork' describes a consequence or simultaneous action without needing an extra conjunction and verb. This makes sentences more concise and fluent.",
+        "grammar_tip": "B1 Grammar: Reported Speech. When reporting what someone said, shift the tense back. Present becomes Past. Example: 'I am tired' -> He said he was tired.",
         "tooltips": {
             "pivotal": {
                 "word": "pivotal",
@@ -543,6 +597,12 @@
                 "word": "impediments",
                 "difficulty": "hard",
                 "sentence": "faced impediments many project the"
+            },
+            {
+                "word": "was",
+                "difficulty": "hard",
+                "sentence": "She said she ______ (is) going to the store.",
+                "type": "grammar"
             }
         ],
         "day": 10,
@@ -553,7 +613,7 @@
         "topic": "The mystery of the Bermuda Triangle",
         "curiosity_title": "Unveiling the Enigma of the Sargasso Sea",
         "curiosity_text": "The Bermuda Triangle, also known as the Devil's Triangle, is a loosely defined region in the western part of the North Atlantic Ocean where a number of aircraft and ships are said to have disappeared under mysterious circumstances. For centuries, mariners and aviators have recounted tales of vanishing vessels and inexplicable phenomena, giving rise to its notorious reputation. While popular culture often attributes these occurrences to supernatural forces or extraterrestrial activity, skeptics posit natural explanations, such as severe weather, navigational errors, or magnetic anomalies. The sheer volume of `anomalous` disappearances, however, continues to be a source of `perplexing` debate. Scientists and researchers have proposed various theories, from rogue waves to methane hydrate eruptions, yet no single explanation fully accounts for every incident, leaving the true nature of these events largely `unfathomable`.",
-        "grammar_tip": "Participle clauses, like 'giving rise to its notorious reputation', are concise ways to add extra information, indicating cause, result, or simultaneous actions. They often start with a present participle (-ing form) or a past participle (-ed form), and the subject of the participle clause is usually the same as the main clause.",
+        "grammar_tip": "B1 Grammar: Gerunds vs Infinitives. Some verbs are followed by -ing (enjoy, avoid) and others by 'to' (decide, hope). Example: 'I avoid eating junk food.'",
         "tooltips": {
             "anomalous": {
                 "word": "anomalous",
@@ -598,6 +658,12 @@
                 "word": "unfathomable",
                 "difficulty": "hard",
                 "sentence": "truly is vastness unfathomable The universe's."
+            },
+            {
+                "word": "eating",
+                "difficulty": "medium",
+                "sentence": "You should avoid ______ (eat) too much sugar before bed.",
+                "type": "grammar"
             }
         ],
         "day": 11,
@@ -608,7 +674,7 @@
         "topic": "How Coffee Conquered the World",
         "curiosity_title": "From Ancient Ritual to Global Obsession: The Unstoppable Rise of Coffee",
         "curiosity_text": "The remarkable journey of coffee, from its fabled origins in Ethiopian highlands, offers a compelling narrative of global conquest and cultural transformation. Initially a humble stimulant for Sufi mystics in Yemen, its invigorating properties and communal consumption quickly established it as a social lubricant across the Arabian Peninsula. Coffeehouses emerged as intellectual hubs, fostering discourse and leaving an indelible mark on urban life. As the bean travelled to Europe in the 17th century, overcoming initial religious condemnation, it spurred a significant efflorescence of cafe culture, becoming synonymous with Enlightenment salons and revolutionary thought. European colonial ambitions then propelled coffee's cultivation en masse across tropical regions, solidifying its status as a global commodity. This expansion ultimately cemented coffee's cultural and economic hegemony, positioning it today as a truly indispensable, ubiquitous staple worldwide.",
-        "grammar_tip": "Notice the use of present participles (-ing forms) like 'leaving', 'overcoming', 'becoming', 'positioning'. These forms often introduce a result, a continuous action, or an accompanying circumstance related to the main clause, making your sentences more concise and dynamic. For example, 'Coffeehouses emerged... fostering discourse and leaving an indelible mark' shows two simultaneous results of their emergence.",
+        "grammar_tip": "B1 Grammar: So vs Such. Use 'so' + adjective/adverb (so beautiful) and 'such' + noun phrase (such a beautiful day).",
         "tooltips": {
             "indelible": {
                 "word": "indelible",
@@ -653,6 +719,12 @@
                 "word": "hegemony",
                 "difficulty": "hard",
                 "sentence": "maintained The empire over territory vast economic its hegemony."
+            },
+            {
+                "word": "such a",
+                "difficulty": "medium",
+                "sentence": "It was ______ wonderful surprise!",
+                "type": "grammar"
             }
         ],
         "day": 12,
@@ -663,7 +735,7 @@
         "topic": "The Discovery of Penicillin: A Serendipitous Breakthrough",
         "curiosity_title": "From Petri Dish to Paradigm Shift: The Penicillin Saga",
         "curiosity_text": "Alexander Fleming's 1928 discovery of penicillin was a profoundly fortuitous event that irrevocably altered the course of medicine. Returning from a vacation, he observed a mold, Penicillium notatum, contaminating a staphylococcus culture plate. Crucially, a clear zone around the mold indicated it inhibited bacterial growth. Though Fleming identified the antibacterial substance, he struggled with its isolation and stability, and its immense therapeutic efficacy was not immediately fully realized. It wasn't until the early 1940s that Howard Florey, Ernst Chain, and Norman Heatley at Oxford refined methods for producing penicillin in stable, usable forms. This collective effort transformed what was hitherto a laboratory curiosity into a life-saving drug, ushering in the age of antibiotics and drastically reducing mortality from bacterial infections worldwide. The impact of this discovery remains one of humanity's greatest medical advancements.",
-        "grammar_tip": "The use of 'what' as a relative pronoun, as in 'what was hitherto a laboratory curiosity', introduces a noun clause. This structure often functions as the subject or object of a sentence, effectively replacing phrases like 'the thing that' or 'that which' to refer to an idea or situation.",
+        "grammar_tip": "B1 Grammar: Past Continuous. Used for actions in progress in the past, often interrupted by a simple past action. Example: 'I was watching TV when the phone rang.'",
         "tooltips": {
             "fortuitous": {
                 "word": "fortuitous",
@@ -708,6 +780,12 @@
                 "word": "hitherto",
                 "difficulty": "hard",
                 "sentence": "The regarded as problem, a minor serious developed into concern. had hitherto been issue, a (Unscramble the sentence)"
+            },
+            {
+                "word": "was watching",
+                "difficulty": "medium",
+                "sentence": "I ______ (watch) a movie when the power went out.",
+                "type": "grammar"
             }
         ],
         "day": 13,
@@ -718,7 +796,7 @@
         "topic": "The History of Pizza: A Culinary Odyssey",
         "curiosity_title": "From Humble Flatbread to Global Phenomenon",
         "curiosity_text": "The ubiquitous pizza, a global culinary icon, boasts a history far more intricate than many realize. While often associated solely with Italy, its origins are a fascinating tapestry woven from ancient civilizations. Flatbreads with toppings were a staple across the Mediterranean and Middle East millennia ago, but the modern pizza truly began to take shape in Naples during the 18th century. Initially a humble, inexpensive food for the city's working class, it quickly became a venerated dish. The legendary Margherita pizza, reputedly created in 1889 to honor Queen Margherita of Savoy, with its colors mirroring the Italian flag (red tomatoes, white mozzarella, green basil), cemented pizza's status. Post-World War II, with Italian immigrants carrying their culinary traditions abroad, pizza experienced an inexorable rise, transforming from a regional specialty into a global phenomenon, adapting to local tastes yet retaining its universal appeal.",
-        "grammar_tip": "Notice the frequent use of the passive voice (e.g., 'was woven', 'was created', 'is associated') in historical narratives. This construction is common when the action itself or the recipient of the action is more important than the agent, or when the agent is unknown or irrelevant.",
+        "grammar_tip": "B1 Grammar: Question Tags. Used to confirm information. Positive sentence -> negative tag. Example: 'You are a student, aren't you?'",
         "tooltips": {
             "tapestry": {
                 "word": "tapestry",
@@ -763,6 +841,12 @@
                 "word": "inexorable",
                 "difficulty": "hard",
                 "sentence": "The / of / challenges / company / the / faced / inexorable / an / series."
+            },
+            {
+                "word": "aren't you",
+                "difficulty": "hard",
+                "sentence": "You are coming to the party tonight, ______?",
+                "type": "grammar"
             }
         ],
         "day": 14,
@@ -773,7 +857,7 @@
         "topic": "Why Cats Purr: An Advanced Insight",
         "curiosity_title": "Beyond Contentment: The Multifaceted Mystery of Feline Purring",
         "curiosity_text": "While often associated with contentment, the enigmatic purr of a cat is a far more complex vibratory oscillation than mere happiness. Research suggests this distinctive rumble serves a multitude of purposes, from self-soothing in stressful situations to fostering bone and tissue repair through low-frequency vibrations. Kittens and their mothers use purring as a vital communication tool, and domestic cats frequently employ a unique solicitation purr, blending a regular purr with an urgent meow-like sound, specifically designed to elicit attention or food from their human companions. Beyond these practical applications, the purr also has a profound anodyne effect, not only for the feline itself but often for humans in close proximity, creating a sense of calm and well-being. This innate mechanism underscores the sophisticated biological toolkit cats possess, extending well beyond their reputation as aloof companions.",
-        "grammar_tip": "Note the use of present participle clauses (e.g., 'fostering bone and tissue repair' or 'blending a regular purr') which function as adverbial phrases. They add descriptive details or show simultaneous actions to the main clause, enhancing clarity and flow in advanced writing.",
+        "grammar_tip": "B1 Grammar: Contrast linking words. 'Although', 'Even though', and 'Despite'. Remember: Despite is followed by a noun or -ing, not a full clause. Example: 'Despite the rain, we walked.'",
         "tooltips": {
             "vibratory oscillation": {
                 "word": "vibratory oscillation",
@@ -818,6 +902,12 @@
                 "word": "anodyne effect",
                 "difficulty": "hard",
                 "sentence": "Unscramble: provides / the / purring / cats / a / known / anodyne / effect / for / is / its"
+            },
+            {
+                "word": "Despite",
+                "difficulty": "hard",
+                "sentence": "______ being very tired, she finished the marathon.",
+                "type": "grammar"
             }
         ],
         "day": 15,
